@@ -295,13 +295,13 @@ class ControlsMacro
 				#if TOUCH_CONTROLS
 				case ":mobileJustPressed":
 					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustPressed(MobileInputID.$mobileId);
+					expr = macro mobileControlsJustPressed(MobileInputID.$mobileID);
 				case ":mobilePressed":
 					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsPressed(MobileInputID.$mobileId);
+					expr = macro mobileControlsPressed(MobileInputID.$mobileID);
 				case ":mobileJustReleased":
 					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustReleased(MobileInputID.$mobileId);
+					expr = macro mobileControlsJustReleased(MobileInputID.$mobileID);
 				#end
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
