@@ -263,7 +263,7 @@ class ControlsMacro
 
 		var keyset: Null<String> = null;
 		#if TOUCH_CONTROLS
-		var tracedID :Null<String> = null;
+		var trackedID :Null<String> = null;
 		#end
 		var expr: Expr = null;
 		var metasToRemove = [];
