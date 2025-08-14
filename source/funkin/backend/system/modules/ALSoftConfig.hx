@@ -20,7 +20,7 @@ import sys.FileSystem;
  * improving audio quality on native targets.
  */
 #if !macro
-@:build(backend.ALSoftConfig.setupConfig())
+@:build(funkin.backend.system.modules.ALSoftConfig.setupConfig())
 #end
 class ALSoftConfig
 {
