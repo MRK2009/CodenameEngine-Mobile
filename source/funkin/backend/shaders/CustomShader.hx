@@ -1,8 +1,6 @@
 package funkin.backend.shaders;
 
-import haxe.Exception;
 import openfl.Assets;
-import hscript.IHScriptCustomBehaviour;
 
 /**
  * Class for custom shaders.
@@ -22,18 +20,20 @@ class CustomShader extends FunkinShader {
 	 * @param glslVersion GLSL version to use. Defaults to `100` in mobile, `120` in desktop.
 	 */
 	public function new(name:String, glslVersion:String = #if mobile "100" #else "120" #end) {
+		if (glslVersion == null) glslVersion = Flags.DEFAULT_GLSL_VERSION;
 		var fragShaderPath = Paths.fragShader(name);
 		var vertShaderPath = Paths.vertShader(name);
 		var fragCode = Assets.exists(fragShaderPath) ? Assets.getText(fragShaderPath) : null;
 		var vertCode = Assets.exists(vertShaderPath) ? Assets.getText(vertShaderPath) : null;
 
+		fileName = name;
 		fragFileName = fragShaderPath;
 		vertFileName = vertShaderPath;
 
 		path = fragShaderPath+vertShaderPath;
 
 		if (fragCode == null && vertCode == null)
-			Logs.trace('Shader "$name" couldn\'t be found.', ERROR);
+			Logs.error('Shader "$name" couldn\'t be found.');
 
 		super(fragCode, vertCode, glslVersion);
 	}

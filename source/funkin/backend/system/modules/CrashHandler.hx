@@ -27,8 +27,36 @@ class CrashHandler
 		#end
 	}
 
-	private static function onUncaughtError(e:UncaughtErrorEvent):Void
-	{
+	public static function onUncaughtError(e:UncaughtErrorEvent) {
+		var m:String = e.error;
+		if (Std.isOfType(e.error, Error)) {
+			var err:Error = cast e.error;
+			m = '${err.message}';
+		} else if (Std.isOfType(e.error, ErrorEvent)) {
+			var err:ErrorEvent = cast e.error;
+			m = '${err.text}';
+		}
+		var stack = CallStack.exceptionStack();
+		var stackLabel:String = "";
+		for(e in stack) {
+			switch(e) {
+				case CFunction: stackLabel += "Non-Haxe (C) Function";
+				case Module(c): stackLabel += 'Module ${c}';
+				case FilePos(parent, file, line, col):
+					switch(parent) {
+						case Method(cla, func):
+							stackLabel += '(${file}) ${cla.split(".").last()}.$func() - line $line';
+						case _:
+							stackLabel += '(${file}) - line $line';
+					}
+				case LocalFunction(v):
+					stackLabel += 'Local Function ${v}';
+				case Method(cl, m):
+					stackLabel += '${cl} - ${m}';
+			}
+			stackLabel += "\r\n";
+		}
+
 		e.preventDefault();
 		e.stopPropagation();
 		e.stopImmediatePropagation();
