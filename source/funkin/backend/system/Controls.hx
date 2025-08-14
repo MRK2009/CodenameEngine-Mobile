@@ -466,30 +466,14 @@ class Controls extends FlxActionSet
 			case NOTE_LEFT: _noteLeft;
 			case NOTE_RIGHT: _noteRight;
 			case ACCEPT: _accept;
-			case ACCEPT_HOLD: _acceptHold;
-			case ACCEPT_R: _acceptR;
 			case BACK: _back;
-			case BACK_HOLD: _backHold;
-			case BACK_R: _backR;
 			case PAUSE: _pause;
-			case PAUSE_HOLD: _pauseHold;
-			case PAUSE_R: _pauseR;
 			case RESET: _reset;
-			case RESET_HOLD: _resetHold;
-			case RESET_R: _resetR;
 			// case CHEAT: _cheat;
 			case SWITCHMOD: _switchMod;
-			case SWITCHMOD_HOLD: _switchModHold;
-			case SWITCHMOD_R: _switchModR;
 			case DEV_ACCESS: _devAccess;
-			case DEV_ACCESS_HOLD: _devAccessHold;
-			case DEV_ACCESS_R: _devAccessR;
 			case DEV_CONSOLE: _devConsole;
-			case DEV_CONSOLE_HOLD: _devConsoleHold;
-			case DEV_CONSOLE_R: _devConsoleR;
 			case DEV_RELOAD: _devReload;
-			case DEV_RELOAD_HOLD: _devReloadHold;
-			case DEV_RELOAD_R: _devReloadR;
 		}
 	}
 

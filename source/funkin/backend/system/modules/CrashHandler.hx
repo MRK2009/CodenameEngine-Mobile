@@ -1,5 +1,6 @@
 package funkin.backend.system.modules;
 
+import haxe.CallStack;
 import openfl.events.UncaughtErrorEvent;
 import openfl.events.ErrorEvent;
 import openfl.errors.Error;

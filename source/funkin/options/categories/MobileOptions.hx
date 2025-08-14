@@ -1,5 +1,8 @@
 package funkin.options.categories;
 
+import flixel.input.keyboard.FlxKey;
+import lime.system.System as LimeSystem;
+
 class MobileOptions extends TreeMenuScreen {
 	public function new() {
 		super('Mobile', 'Change Mobile Related Things such as Controls alpha, screen timeout....', 'MobileOptions.');
