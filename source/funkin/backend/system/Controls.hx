@@ -462,6 +462,7 @@ class Controls extends FlxActionSet
 			case BACK: _back;
 			case PAUSE: _pause;
 			case RESET: _reset;
+			case CHANGE_MODE: _changeMode;
 			// case CHEAT: _cheat;
 			case SWITCHMOD: _switchMod;
 			case DEV_ACCESS: _devAccess;
@@ -534,6 +535,10 @@ class Controls extends FlxActionSet
 				func(_reset, JUST_PRESSED);
 				func(_resetHold, PRESSED);
 				func(_resetR, JUST_RELEASED);
+			case CHANGE_MODE:
+				func(_changeMode, JUST_PRESSED);
+				func(_changeModeHold, PRESSED);
+				func(_changeModeR, JUST_RELEASED);
 			/*case CHEAT:
 				func(_cheat, JUST_PRESSED); */
 			case SWITCHMOD:
