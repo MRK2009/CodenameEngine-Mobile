@@ -262,9 +262,11 @@ class ControlsMacro
 			internalName += type.substr(1);
 
 		var keyset: Null<String> = null;
-		var trackedID :Null<String> = null;
 		var expr: Expr = null;
 		var metasToRemove = [];
+
+		var trackedID :Null<String> = null;
+		var trackedState :Null<String> = null;
 		for (meta in field.meta)
 		{
 			var shouldRemove = true;
@@ -295,13 +297,16 @@ class ControlsMacro
 					expr = macro func($i{internalName}, JUST_RELEASED);
 				case ":mobileJustPressed":
 					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustPressed(MobileInputID.$trackedID);
+					trackedState = "JustPressed";
+					// expr = macro mobileControlsJustPressed(MobileInputID.$trackedID);
 				case ":mobilePressed":
 					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsPressed(MobileInputID.$trackedID);
+					trackedState = "Pressed";
+					// expr = macro mobileControlsPressed(MobileInputID.$trackedID);
 				case ":mobileJustReleased":
 					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustReleased(MobileInputID.$trackedID);
+					trackedState = "JustReleased";
+					// expr = macro mobileControlsJustReleased(MobileInputID.$trackedID);
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
 						_allDevModeOnlyControls.push(shortName);
@@ -352,12 +357,20 @@ class ControlsMacro
 			kind: FFun({
 				ret: macro : Bool,
 				params: [],
-				expr: if (isMobileControls)
-					macro return expr
-				else if (_allDevModeOnlyControls.contains(shortName))
-					macro return Options.devMode && $i{internalName}.check()
-				else
-					macro return $i{internalName}.check(),
+				expr: _allDevModeOnlyControls.contains(shortName) ? macro Options.devMode
+					&& ($i{internalName}.check() || switch (trackedState)
+					{
+						case "Pressed": mobileControlsPressed(MobileInputID.$trackedID);
+						case "JustPressed": mobileControlsJustPressed(MobileInputID.$trackedID);
+						case "Released": mobileControlsReleased(MobileInputID.$trackedID);
+						case "JustReleased": mobileControlsJustReleased(MobileInputID.$trackedID);
+					}) : macro $i{internalName}.check() || switch (trackedState)
+					{
+						case "Pressed": mobileControlsPressed(MobileInputID.$trackedID);
+						case "JustPressed": mobileControlsJustPressed(MobileInputID.$trackedID);
+						case "Released": mobileControlsReleased(MobileInputID.$trackedID);
+						case "JustReleased": mobileControlsJustReleased(MobileInputID.$trackedID);
+					},
 				args: []
 			}),
 			pos: field.pos,
@@ -374,13 +387,10 @@ class ControlsMacro
 			kind: FFun({
 				ret: macro : Bool,
 				params: [],
-				expr: if (isMobileControls)
-					macro return;
-				else
-					macro
-					{
-						return @:privateAccess $i{internalName}._checked = val;
-					},
+				expr: macro
+				{
+					return @:privateAccess $i{internalName}._checked = val;
+				},
 				args: [{name: "val", type: macro : Bool}]
 			}),
 			pos: field.pos,
