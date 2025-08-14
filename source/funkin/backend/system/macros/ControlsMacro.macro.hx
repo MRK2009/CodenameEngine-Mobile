@@ -341,6 +341,8 @@ class ControlsMacro
 			meta: []
 		};
 
+		final isMobileControls:Bool = (expr != null && expr.toString().indexOf("mobileControls") != -1);
+
 		// Generated Code:
 		// inline function get_UI_UP(): Bool
 		//     return _uiUp.check(); or return Options.devMode && _uiUp.check(); depending if its dev mode
@@ -350,9 +352,12 @@ class ControlsMacro
 			kind: FFun({
 				ret: macro : Bool,
 				params: [],
-				expr: _allDevModeOnlyControls.contains(shortName) ?
-					(macro return Options.devMode && $i{internalName}.check()) :
-					(macro return $i{internalName}.check()),
+				expr: if (isMobileControls)
+					expr
+				else if (_allDevModeOnlyControls.contains(shortName))
+					macro return Options.devMode && $i{internalName}.check()
+				else
+					macro return $i{internalName}.check(),
 				args: []
 			}),
 			pos: field.pos,
