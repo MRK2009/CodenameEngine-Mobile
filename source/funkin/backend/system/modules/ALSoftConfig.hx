@@ -7,7 +7,6 @@ import haxe.io.Path;
 #if android
 import lime.system.JNI;
 #end
-
 #if sys
 import sys.io.File;
 import sys.FileSystem;
@@ -20,35 +19,27 @@ import sys.FileSystem;
  * The config overrides a few global OpenALSoft settings with the aim of
  * improving audio quality on native targets.
  */
-#if (!macro && android)
-@:build(funkin.backend.system.modules.ALSoftConfig.setupConfig())
+#if !macro
+@:build(backend.ALSoftConfig.setupConfig())
 #end
 class ALSoftConfig
 {
-	#if (desktop || android)
-	#if android
-	private static final ANDROID_OPENAL_CONFIG:String = '';
-	#end
+	#if (desktop || mobile)
+	private static final OPENAL_CONFIG:String = '';
 
 	public static function init():Void
 	{
-		var origin:String = #if android System.applicationStorageDirectory #elseif hl Sys.getCwd() #else Sys.programPath() #end;
-
-		var configPath:String = Path.directory(Path.withoutExtension(origin));
-		#if windows
-		configPath += "/plugins/alsoft.ini";
-		#elseif mac
-		configPath = Path.directory(configPath) + "/Resources/plugins/alsoft.conf";
-		#elseif android
-		configPath = origin + 'openal/alsoft.conf';
-		FileSystem.createDirectory(Path.directory(configPath));
-		File.saveContent(configPath, ANDROID_OPENAL_CONFIG);
+		final configPath:String = Path.join([
+			#if mobile Path.directory(Path.withoutExtension(System.applicationStorageDirectory)) #elseif mac Path.directory(Path.withoutExtension(Sys.programPath())) +
+			'/Resources/' #else Sys.getCwd() #end,
+			#if windows 'alsoft.ini' #else 'alsoft.conf' #end
+		]);
+		if (!FileSystem.exists(Path.directory(configPath)))
+			FileSystem.createDirectory(Path.directory(configPath));
+		File.saveContent(configPath, OPENAL_CONFIG);
+		#if android
 		JNI.createStaticMethod('org/libsdl/app/SDLActivity', 'nativeSetenv', '(Ljava/lang/String;Ljava/lang/String;)V')("ALSOFT_CONF", configPath);
 		#else
-		configPath += "/plugins/alsoft.conf";
-		#end
-
-		#if !android
 		Sys.putEnv("ALSOFT_CONF", configPath);
 		#end
 	}
@@ -60,15 +51,16 @@ class ALSoftConfig
 		var fields = Context.getBuildFields();
 		var pos = Context.currentPos();
 
-		if (!FileSystem.exists('alsoft.txt')) return fields;
+		if (!FileSystem.exists('alsoft.txt'))
+			return fields;
 
 		var newFields = fields.copy();
 		for (i => field in fields)
 		{
-			if (field.name == 'ANDROID_OPENAL_CONFIG')
+			if (field.name == 'OPENAL_CONFIG')
 			{
 				newFields[i] = {
-					name: 'ANDROID_OPENAL_CONFIG',
+					name: 'OPENAL_CONFIG',
 					access: [APrivate, AStatic, AFinal],
 					kind: FVar(macro :String, macro $v{File.getContent('alsoft.txt')}),
 					pos: pos,
