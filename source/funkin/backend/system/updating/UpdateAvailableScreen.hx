@@ -133,7 +133,12 @@ class UpdateAvailableScreen extends MusicBeatState {
 	public function select() {
 		if (installSelected) {
 			CoolUtil.playMenuSFX(CONFIRM);
+			#if mobile
+			FlxG.openURL("https://github.com/HomuHomu833/CodenameEngine-Mobile/releases");
+			Sys.exit(1);
+			#else
 			FlxG.switchState(new UpdateScreen(check));
+			#end
 		} else {
 			CoolUtil.playMenuSFX(CANCEL);
 			FlxG.switchState(new MainMenuState());
