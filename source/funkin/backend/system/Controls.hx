@@ -60,17 +60,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("up")
-	#end
 	@:pressed("up") public var UP(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("up")
-	#end
 	@:justPressed("up") public var UP_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("up")
-	#end
 	@:justReleased("up") public var UP_R(get, set): Bool;
 
 	#if !switch
@@ -78,17 +72,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("left")
-	#end
 	@:pressed("left") public var LEFT(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("left")
-	#end
 	@:justPressed("left") public var LEFT_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("left")
-	#end
 	@:justReleased("left") public var LEFT_R(get, set): Bool;
 
 	#if !switch
@@ -96,17 +84,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("right")
-	#end
 	@:pressed("right") public var RIGHT(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("right")
-	#end
 	@:justPressed("right") public var RIGHT_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("right")
-	#end
 	@:justReleased("right") public var RIGHT_R(get, set): Bool;
 
 	#if !switch
@@ -114,17 +96,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("down")
-	#end
 	@:pressed("down") public var DOWN(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("down")
-	#end
 	@:justPressed("down") public var DOWN_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("down")
-	#end
 	@:justReleased("down") public var DOWN_R(get, set): Bool;
 
 	// Note Controls
@@ -134,17 +110,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("hitbox-up")
-	#end
 	@:pressed("note-up") public var NOTE_UP(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("hitbox-up")
-	#end
 	@:justPressed("note-up") public var NOTE_UP_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("hitbox-up")
-	#end
 	@:justReleased("note-up") public var NOTE_UP_R(get, set): Bool;
 
 	#if !switch
@@ -152,17 +122,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("hitbox-left")
-	#end
 	@:pressed("note-left") public var NOTE_LEFT(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("hitbox-left")
-	#end
 	@:justPressed("note-left") public var NOTE_LEFT_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("hitbox-left")
-	#end
 	@:justReleased("note-left") public var NOTE_LEFT_R(get, set): Bool;
 
 	#if !switch
@@ -170,17 +134,11 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("hitbox-right")
-	#end
 	@:pressed("note-right") public var NOTE_RIGHT(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("hitbox-right")
-	#end
 	@:justPressed("note-right") public var NOTE_RIGHT_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("hitbox-right")
-	#end
 	@:justReleased("note-right") public var NOTE_RIGHT_R(get, set): Bool;
 
 	#if !switch
@@ -188,45 +146,27 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN])
 	#end
-	#if TOUCH_CONTROLS
 	@:mobilePressed("hitbox-down")
-	#end
 	@:pressed("note-down") public var NOTE_DOWN(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("hitbox-down")
-	#end
 	@:justPressed("note-down") public var NOTE_DOWN_P(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("hitbox-down")
-	#end
 	@:justReleased("note-down") public var NOTE_DOWN_R(get, set): Bool;
 
 	@:gamepad([A])
-	#if TOUCH_CONTROLS
 	@:mobilePressed("A")
-	#end
 	@:justPressed("accept") public var ACCEPT(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("A")
-	#end
 	@:pressed("accept") public var ACCEPT_HOLD(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("A")
-	#end
 	@:justReleased("accept") public var ACCEPT_R(get, set): Bool;
 
 	@:gamepad([B])
-	#if TOUCH_CONTROLS
 	@:mobilePressed("B")
-	#end
 	@:justPressed("back") public var BACK(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustPressed("B")
-	#end
 	@:pressed("back") public var BACK_HOLD(get, set): Bool;
-	#if TOUCH_CONTROLS
 	@:mobileJustReleased("B")
-	#end
 	@:justReleased("back") public var BACK_R(get, set): Bool;
 
 	@:gamepad([START])
@@ -472,9 +412,9 @@ class Controls extends FlxActionSet
 		return input.device == GAMEPAD && (deviceID == FlxInputDeviceID.ALL || input.deviceID == deviceID);
 	}
 
-	#if TOUCH_CONTROLS
 	public function mobileControlsJustPressed(id:MobileInputID):Bool
 	{
+		#if TOUCH_CONTROLS
 		final state:MusicBeatState = MusicBeatState.getState();
 		final substate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var bools:Array<Bool> = [false, false, false, false];
@@ -498,10 +438,14 @@ class Controls extends FlxActionSet
 		}	
 
 		return bools.contains(true);
+		#else
+		return false;
+		#end
 	}
 
 	public function mobileControlsJustReleased(id:MobileInputID):Bool
 	{
+		#if TOUCH_CONTROLS
 		final state:MusicBeatState = MusicBeatState.getState();
 		final substate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var bools:Array<Bool> = [false, false, false, false];
@@ -525,10 +469,14 @@ class Controls extends FlxActionSet
 		}	
 
 		return bools.contains(true);
+		#else
+		return false;
+		#end
 	}
 
 	public function mobileControlsPressed(id:MobileInputID):Bool
 	{
+		#if TOUCH_CONTROLS
 		final state:MusicBeatState = MusicBeatState.getState();
 		final substate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var bools:Array<Bool> = [false, false, false, false];
@@ -552,10 +500,14 @@ class Controls extends FlxActionSet
 		}	
 
 		return bools.contains(true);
+		#else
+		return false;
+		#end
 	}
 
 	public function mobileControlsReleased(id:MobileInputID):Bool
 	{
+		#if TOUCH_CONTROLS
 		final state:MusicBeatState = MusicBeatState.getState();
 		final substate:MusicBeatSubstate = MusicBeatSubstate.instance;
 		var bools:Array<Bool> = [false, false, false, false];
@@ -579,8 +531,10 @@ class Controls extends FlxActionSet
 		}	
 
 		return bools.contains(true);
+		#else
+		return false;
+		#end
 	}
-	#end
 
 	@:nullSafety(Off)
 	public inline function getJustPressed(name:String) {

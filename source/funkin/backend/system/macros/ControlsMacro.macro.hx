@@ -262,9 +262,7 @@ class ControlsMacro
 			internalName += type.substr(1);
 
 		var keyset: Null<String> = null;
-		#if TOUCH_CONTROLS
 		var trackedID :Null<String> = null;
-		#end
 		var expr: Expr = null;
 		var metasToRemove = [];
 		for (meta in field.meta)
@@ -295,7 +293,6 @@ class ControlsMacro
 				case ":justReleased":
 					keyset = extractString(meta.params[0]);
 					expr = macro func($i{internalName}, JUST_RELEASED);
-				#if TOUCH_CONTROLS
 				case ":mobileJustPressed":
 					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
 					expr = macro mobileControlsJustPressed(MobileInputID.$trackedID);
@@ -305,7 +302,6 @@ class ControlsMacro
 				case ":mobileJustReleased":
 					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
 					expr = macro mobileControlsJustReleased(MobileInputID.$trackedID);
-				#end
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
 						_allDevModeOnlyControls.push(shortName);
