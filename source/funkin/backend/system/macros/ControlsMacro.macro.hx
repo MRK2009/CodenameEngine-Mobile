@@ -345,6 +345,8 @@ class ControlsMacro
 			meta: []
 		};
 
+		var funcIdent = Context.getIdent("mobileControls" + trackedState);
+
 		// Generated Code:
 		// inline function get_UI_UP(): Bool
 		//     return (_uiUp.check() || mobileControlsJustPressed(MobileInputID.UP)); or return Options.devMode && (_uiUp.check() || mobileControlsJustPressed(MobileInputID.UP)); depending if its dev mode
@@ -355,8 +357,8 @@ class ControlsMacro
 				ret: macro : Bool,
 				params: [],
 				expr: _allDevModeOnlyControls.contains(shortName) ?
-					(macro return Options.devMode && ($i{internalName}.check() || mobileControls$trackedState(MobileInputID.$trackedID))) :
-					(macro return ($i{internalName}.check() || mobileControls$trackedState(MobileInputID.$trackedID))),
+					(macro return Options.devMode && ($i{internalName}.check() || $i{funcIdent}(MobileInputID.$v{trackedID}))) :
+					(macro return ($i{internalName}.check() || $i{funcIdent}(MobileInputID.$v{trackedID}))),
 				args: []
 			}),
 			pos: field.pos,
