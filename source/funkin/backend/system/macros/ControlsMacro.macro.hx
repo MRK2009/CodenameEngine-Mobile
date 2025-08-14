@@ -292,6 +292,17 @@ class ControlsMacro
 				case ":justReleased":
 					keyset = extractString(meta.params[0]);
 					expr = macro func($i{internalName}, JUST_RELEASED);
+				#if TOUCH_CONTROLS
+				case ":mobileJustPressed":
+					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsJustPressed(MobileInputID.$mobileId);
+				case ":mobilePressed":
+					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsPressed(MobileInputID.$mobileId);
+				case ":mobileJustReleased":
+					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsJustReleased(MobileInputID.$mobileId);
+				#end
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
 						_allDevModeOnlyControls.push(shortName);
