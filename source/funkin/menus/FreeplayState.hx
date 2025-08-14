@@ -184,11 +184,12 @@ class FreeplayState extends MusicBeatState
 		add(scoreText);
 
 		changeSelection(0, true);
-		changeCoopMode(0, true);
 
 		interpColor = new FlxInterpolateColor(bg.color);
 
 		addTouchPad('LEFT_FULL', 'A_B_X_Y');
+
+		changeCoopMode(0, true);
 	}
 
 	#if PRELOAD_ALL
@@ -432,6 +433,13 @@ class FreeplayState extends MusicBeatState
 		updateScore();
 		
 		var coopBinds = [CoolUtil.keyToString(Options.P1_CHANGE_MODE[0]), CoolUtil.keyToString(Options.P2_CHANGE_MODE[0])].filter(x -> x != "---");
+		if (controls.touchC)
+		{
+			#if TOUCH_CONTROLS
+			if (touchPad.buttonX != null)
+				coopBinds = ["X"];
+			#end
+		}
 		if (coopBinds.length == 2 && coopBinds[1] == coopBinds[0]) coopBinds.pop();
 		else if (coopBinds.length == 0) coopBinds.push("---");
 
