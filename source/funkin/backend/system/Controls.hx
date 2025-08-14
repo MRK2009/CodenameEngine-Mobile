@@ -1015,6 +1015,33 @@ class Controls extends FlxActionSet
 		#end
 	}
 
+	// lazy
+	public function getMobileIDFromControl(control:Control):MobileInputID
+	{
+		return switch (control)
+		{
+			case UP: MobileInputID.UP;
+			case DOWN: MobileInputID.DOWN;
+			case LEFT: MobileInputID.LEFT;
+			case RIGHT: MobileInputID.RIGHT;
+			// Todo
+			// case NOTE_UP: _noteUp;
+			// case NOTE_DOWN: _noteDown;
+			// case NOTE_LEFT: _noteLeft;
+			// case NOTE_RIGHT: _noteRight;
+			case ACCEPT: MobileInputID.A;
+			case BACK: MobileInputID.B;
+			case PAUSE: MobileInputID.P;
+			// case RESET: _reset;
+			// case CHANGE_MODE: _changeMode;
+			// case CHEAT: _cheat;
+			// case SWITCHMOD: _switchMod;
+			// case DEV_ACCESS: _devAccess;
+			// case DEV_CONSOLE: _devConsole;
+			// case DEV_RELOAD: _devReload;
+		}
+	}
+
 	public inline function getJustPressed(name:String) {
 		return ControlsUtil.getJustPressed(this, name);
 	}
