@@ -36,7 +36,7 @@ class OptionsMenu extends TreeMenu {
 		},
 		#if (mobile || TOUCH_CONTROLS)
 		{
-			name: 'Mobile Options >',
+			name: 'Mobile Options',
 			desc: 'Change Options related to Mobile or Touch Controls',
 			state: MobileOptions
 		},
@@ -64,7 +64,7 @@ class OptionsMenu extends TreeMenu {
 		if (funkin.backend.system.Controls.instance.touchC)
 		{
 			mainOptions = mainOptions.filter(function(option) {
-				return option.name != "Controls";
+				return option.name != "optionsTree.controls-name";
 			});
 		}
 
@@ -119,7 +119,7 @@ class OptionsMenu extends TreeMenu {
 				if (access != null) for (o in parseOptionsFromXML(first, access)) first.add(o);
 			}
 		}
-		addTouchPad('UP_DOWN', 'A_B');
+		addTouchPad('LEFT_FULL', 'A_B');
 		addTouchPadCamera();
 	}
 

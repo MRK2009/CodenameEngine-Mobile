@@ -430,7 +430,7 @@ class FreeplayState extends MusicBeatState
 		curCoopMode = event.value;
 
 		updateScore();
-
+		
 		var coopBinds = [CoolUtil.keyToString(Options.P1_CHANGE_MODE[0]), CoolUtil.keyToString(Options.P2_CHANGE_MODE[0])].filter(x -> x != "---");
 		if (coopBinds.length == 2 && coopBinds[1] == coopBinds[0]) coopBinds.pop();
 		else if (coopBinds.length == 0) coopBinds.push("---");

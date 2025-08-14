@@ -107,7 +107,7 @@ class EditorPicker extends MusicBeatSubstate {
 			changeSelection(Std.int(curMousePos.y / optionHeight)+1);
 		}
 
-		if (controls.ACCEPT || FlxG.mouse.justReleased || !controls.touchC) {
+		if (controls.ACCEPT || (FlxG.mouse.justReleased && !controls.touchC)) {
 			if(options[curSelected].onClick != null)
 				options[curSelected].onClick();
 			else if (options[curSelected].state != null) {

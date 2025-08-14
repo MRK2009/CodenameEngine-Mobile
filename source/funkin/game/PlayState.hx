@@ -876,13 +876,16 @@ class PlayState extends MusicBeatState
 		#end
 
 		startingSong = true;
-		addHitbox();
 		#if TOUCH_CONTROLS
-		hitbox.visible = true;
-		#end
-		#if !android
+		addHitbox();
 		addTouchPad('NONE', 'P');
 		addTouchPadCamera();
+		hitbox.visible = true;
+		hitbox.forEachAlive((button) ->
+		{
+			if (touchPad.buttonP != null)			
+				button.deadZones.push(touchPad.buttonP);
+		});
 		#end
 
 		super.create();
