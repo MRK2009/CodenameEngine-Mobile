@@ -2,6 +2,8 @@
 
 package lime.media;
 
+import lime.system.CFFI;
+import lime.app.Application;
 import haxe.Timer;
 import lime._internal.backend.native.NativeCFFI;
 import lime.media.openal.AL;
@@ -36,13 +38,32 @@ class AudioManager
 				{
 					var alc = context.openal;
 
-					#if (lime_openal && !ios)
+					#if lime_openal
 					ALSoftConfig.init();
 					#end
 					var device = alc.openDevice();
 					var ctx = alc.createContext(device);
 					alc.makeContextCurrent(ctx);
 					alc.processContext(ctx);
+
+					var version:String = alc.getString(AL.VERSION);
+					var alSoft:Bool = StringTools.contains(version, "ALSOFT");
+
+					if (alSoft)
+					{
+						alc.disable(AL.STOP_SOURCES_ON_DISCONNECT_SOFT);
+
+						Application.current.onUpdate.add((_) -> {
+							AudioManager.update();
+						});
+
+						alc.eventControlSOFT(3, [
+							ALC.EVENT_TYPE_DEFAULT_DEVICE_CHANGED_SOFT,
+							ALC.EVENT_TYPE_DEVICE_ADDED_SOFT,
+							ALC.EVENT_TYPE_DEVICE_REMOVED_SOFT
+						], true);
+						alc.eventCallbackSOFT(device, __deviceEventCallback);
+					}
 				}
 				#end
 			}
@@ -57,6 +78,29 @@ class AudioManager
 			};
 			#end
 		}
+	}
+
+	public static function update():Void
+	{
+		#if !lime_doc_gen
+		if (context != null && context.type == OPENAL)
+		{
+			if (__audioDeviceChanged)
+			{
+				var alc = context.openal;
+				var context = alc.getCurrentContext();
+				if (context != null)
+				{
+					var device = alc.getContextsDevice(context);
+					var reopened = alc.reopenDeviceSOFT(device, null, null);
+					if (reopened)
+					{
+						__audioDeviceChanged = false;
+					}
+				}
+			}
+		}
+		#end
 	}
 
 	public static function resume():Void
@@ -120,6 +164,24 @@ class AudioManager
 					alc.pauseDevice(device);
 				}
 			}
+		}
+		#end
+	}
+
+	@:noCompletion static var __audioDeviceChanged:Bool = false;
+	@:noCompletion static function __deviceEventCallback(eventType:Int, deviceType:Int, device:Dynamic,#if hl message:hl.Bytes #else message:String #end, userParam:Dynamic):Void
+	{
+		#if !lime_doc_gen
+		#if hl
+		var message = CFFI.stringValue(message);
+		#end
+
+		if (eventType == ALC.EVENT_TYPE_DEFAULT_DEVICE_CHANGED_SOFT && deviceType == ALC.PLAYBACK_DEVICE_SOFT)
+		{
+			// We can't make any calls to OpenAL here.
+			// Let's set a flag and then reopen the device in the update() function that gets
+			// called on the main thread.
+			__audioDeviceChanged = true;
 		}
 		#end
 	}
