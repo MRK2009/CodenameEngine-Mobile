@@ -114,6 +114,13 @@ class MainMenuState extends MusicBeatState
 					persistentDraw = true;
 					openSubState(new funkin.editors.EditorPicker());
 				}
+				/*
+				if (FlxG.keys.justPressed.SEVEN)
+					FlxG.switchState(new funkin.desktop.DesktopMain());
+				if (FlxG.keys.justPressed.EIGHT) {
+					CoolUtil.safeSaveFile("chart.json", Json.stringify(funkin.backend.chart.Chart.parse("dadbattle", "hard")));
+				}
+				*/
 			}
 			if (!Options.devMode && FlxG.keys.justPressed.SEVEN) {
 				FlxG.sound.play(Paths.sound(Flags.DEFAULT_EDITOR_DELETE_SOUND));

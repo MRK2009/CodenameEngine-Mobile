@@ -18,7 +18,6 @@ Codename Engine is a new Friday Night Funkin' Engine aimed at simplifying moddin
 
 ## How to download
 
-Latest builds for the engine can be found in the [Actions](https://github.com/MobilePorting/CodenameEngine-Mobile/actions) tab.<br>
 Latest builds for the engine can be found in the [Actions](https://github.com/CodenameCrew/CodenameEngine/actions) tab.<br>
 In the future (when the engine won't be a WIP anymore) we're gonna also publish the engine on platforms like Gamebanana; stay tuned!
 

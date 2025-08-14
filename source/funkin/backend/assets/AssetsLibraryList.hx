@@ -5,7 +5,6 @@ import funkin.backend.assets.TranslatedAssetLibrary;
 #end
 import funkin.backend.assets.IModsAssetLibrary;
 import lime.utils.AssetLibrary;
-import lime.utils.AssetType;
 
 class AssetsLibraryList extends AssetLibrary {
 	public var libraries:Array<AssetLibrary> = [];
@@ -215,12 +214,6 @@ class AssetsLibraryList extends AssetLibrary {
 
 		return items;
 	}
-}
-
-enum abstract AssetSource(Null<Bool>) from Bool from Null<Bool> to Null<Bool> {
-	var SOURCE = true;
-	var MODS = false;
-	var BOTH = null;
 }
 
 	public static function getCleanLibrary(e:AssetLibrary):AssetLibrary {

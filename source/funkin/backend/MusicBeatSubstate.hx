@@ -189,20 +189,6 @@ class MusicBeatSubstate extends FlxSubState implements IBeatCancellableReceiver
 		#end
 	}
 
-	override function destroy() {
-		// Touch Controls Related
-		#if TOUCH_CONTROLS
-		removeTouchPad();
-		removeHitbox();
-		#end
-
-		// CNE Related
-		super.destroy();
-		call("destroy");
-		stateScripts = FlxDestroyUtil.destroy(stateScripts);
-
-	}
-
 	public function new(scriptsAllowed:Bool = true, ?scriptName:String) {
 		instance = this;
 		super();
@@ -349,6 +335,16 @@ class MusicBeatSubstate extends FlxSubState implements IBeatCancellableReceiver
 	public override function onResize(w:Int, h:Int) {
 		super.onResize(w, h);
 		event("onResize", EventManager.get(ResizeEvent).recycle(w, h, null, null));
+	}
+
+	public override function destroy() {
+		#if TOUCH_CONTROLS
+		removeTouchPad();
+		removeHitbox();
+		#end
+		super.destroy();
+		call("destroy");
+		stateScripts = FlxDestroyUtil.destroy(stateScripts);
 	}
 
 	public override function switchTo(nextState:FlxState) {

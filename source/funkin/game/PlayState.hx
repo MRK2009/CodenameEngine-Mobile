@@ -1750,8 +1750,7 @@ class PlayState extends MusicBeatState
 		#if TOUCH_CONTROLS
 		hitbox.visible = false;
 		#end
-		if (isStoryMode)
-		{
+		if (isStoryMode) {
 			campaignScore += songScore;
 			campaignMisses += misses;
 			campaignAccuracyTotal += accuracy;

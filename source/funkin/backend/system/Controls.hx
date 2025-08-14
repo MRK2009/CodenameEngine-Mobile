@@ -454,6 +454,7 @@ class Controls extends FlxActionSet
 	@:noCompletion
 	private function get_touchC():Bool
 		return #if TOUCH_CONTROLS Options.touchPadAlpha >= 0.1 #else false #end;
+
 	public function getActionFromControl(control:Control):FlxAction return macro_getActionFromControl(control);
 
 	public function getKeyName(control:Control, idx:Int = 0):String
@@ -722,7 +723,7 @@ class Controls extends FlxActionSet
 		return bools.contains(true);
 	}
 	#end
-}
+
 	@:nullSafety(Off)
 	public inline function getJustPressed(name:String) {
 		return ControlsUtil.getJustPressed(this, name);

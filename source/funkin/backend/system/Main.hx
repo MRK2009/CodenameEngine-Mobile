@@ -28,7 +28,6 @@ import sys.thread.Thread;
 import android.content.Context;
 import android.os.Build;
 #end
-import funkin.backend.assets.ModsFolder;
 import lime.system.System as LimeSystem;
 
 class Main extends Sprite
@@ -151,18 +150,6 @@ class Main extends Sprite
 		#if GLOBAL_SCRIPT
 		funkin.backend.scripting.GlobalScript.init();
 		#end
-
-		#if (sys && TEST_BUILD)
-			trace("Used cne test / cne build. Switching into source assets.");
-			#if MOD_SUPPORT
-				ModsFolder.modsPath = Sys.getCwd() + '${pathBack}mods/';
-				ModsFolder.addonsPath = Sys.getCwd() + '${pathBack}addons/';
-			#end
-			Paths.assetsTree.__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', Sys.getCwd() + '${pathBack}assets/', true));
-		#elseif USE_ADAPTED_ASSETS
-			Paths.assetsTree.__defaultLibraries.push(ModsFolder.loadLibraryFromFolder('assets', Sys.getCwd() + 'assets/', true));
-		#end
-
 
 		var lib = new AssetLibrary();
 		@:privateAccess
