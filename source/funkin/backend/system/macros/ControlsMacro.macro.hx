@@ -357,7 +357,7 @@ class ControlsMacro
 				ret: macro : Bool,
 				params: [],
 				expr: if (isMobileControls)
-					macro return expr;
+					macro return expr
 				else if (_allDevModeOnlyControls.contains(shortName))
 					macro return Options.devMode && $i{internalName}.check()
 				else
