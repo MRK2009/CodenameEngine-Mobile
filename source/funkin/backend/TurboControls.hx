@@ -60,10 +60,10 @@ class TurboControls extends TurboBasic {
 
 	override function get_pressed() {
 		if (allPress) {
-			for (control in controls) if (!(controlsInstance.getActionFromControl(control).check() || controlsInstance.mobileControlsPressed(getMobileIDFromControl(control)))) return false;
+			for (control in controls) if (!(controlsInstance.getActionFromControl(control).check() || controlsInstance.mobileControlsPressed(controlsInstance.getMobileIDFromControl(control)))) return false;
 		}
 		else {
-			for (control in controls) if (controlsInstance.getActionFromControl(control).check() || controlsInstance.mobileControlsPressed(getMobileIDFromControl(control))) return true;
+			for (control in controls) if (controlsInstance.getActionFromControl(control).check() || controlsInstance.mobileControlsPressed(controlsInstance.getMobileIDFromControl(control))) return true;
 		}
 		return allPress;
 	}
