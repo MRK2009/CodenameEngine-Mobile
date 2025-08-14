@@ -93,7 +93,7 @@ enum Control
 	RESET;
 	ACCEPT;
 	ACCEPT_HOLD;
-	ACCEPT_R
+	ACCEPT_R;
 	BACK;
 	BACK_HOLD;
 	BACK_R;
