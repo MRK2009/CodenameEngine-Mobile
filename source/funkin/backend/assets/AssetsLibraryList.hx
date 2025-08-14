@@ -198,6 +198,16 @@ class AssetsLibraryList extends AssetLibrary {
 		return lib;
 	}
 
+	public static function getCleanLibrary(e:AssetLibrary):AssetLibrary {
+		var l = e;
+		if (l is openfl.utils.AssetLibrary) {
+			var al = cast(l, openfl.utils.AssetLibrary);
+			@:privateAccess
+			if (al.__proxy != null) l = al.__proxy;
+		}
+		return l;
+	}
+
 	override public function list(type:String):Array<String>
 	{
 		var items = [];
@@ -213,16 +223,5 @@ class AssetsLibraryList extends AssetLibrary {
 		}
 
 		return items;
-	}
-}
-
-	public static function getCleanLibrary(e:AssetLibrary):AssetLibrary {
-		var l = e;
-		if (l is openfl.utils.AssetLibrary) {
-			var al = cast(l, openfl.utils.AssetLibrary);
-			@:privateAccess
-			if (al.__proxy != null) l = al.__proxy;
-		}
-		return l;
 	}
 }
