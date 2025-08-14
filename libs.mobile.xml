@@ -26,6 +26,8 @@
 
 		<lib name="nape-haxe4" />
 
+		<lib name="format" />
+
 		<git name="hxcpp" url="https://github.com/th2l-devs/hxcpp" />
 	</if>
 </libraries>
