@@ -33,7 +33,7 @@ class MobileOptions extends TreeMenuScreen
 				FlxG.sound.volumeDownKeys = [FlxKey.MINUS, FlxKey.NUMPADMINUS];
 				FlxG.sound.muteKeys = [FlxKey.ZERO, FlxKey.NUMPADZERO];
 			}
-		}, this));
+		}));
 		add(new ArrayOption("Hitbox Design", "Choose how your Hitbox should look like!", ['noGradient', 'noGradientOld', 'gradient', 'hidden'],
 			["No Gradient", "No Gradient (Old)", "Gradient", "Hidden"], 'hitboxType'));
 		add(new Checkbox("Hitbox Position", "If checked, the Hitbox will be put at the bottom of the screen, otherwise will stay at the top.", "hitboxPos"));
