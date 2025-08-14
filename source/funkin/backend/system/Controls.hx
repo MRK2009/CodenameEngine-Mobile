@@ -1030,6 +1030,7 @@ class Controls extends FlxActionSet
 			case ACCEPT: MobileInputID.A;
 			case BACK: MobileInputID.B;
 			case PAUSE: MobileInputID.P;
+			default: MobileInputID.NONE;
 		}
 	}
 
