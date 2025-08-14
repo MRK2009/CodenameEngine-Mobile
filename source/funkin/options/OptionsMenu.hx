@@ -238,7 +238,8 @@ class OptionsMenu extends TreeMenu {
 						node.getAtt("dpadMode") == null ? MusicBeatState.getState().touchPad.curDPadMode : node.getAtt("dpadMode"), 
 						node.getAtt("actionMode") == null ? MusicBeatState.getState().touchPad.curActionMode : node.getAtt("actionMode")
 					];
-					vpadMap.set(node.getAtt("menuName"), arr);
+					// MTODO: IMPLEMENT
+					//vpadMap.set(node.getAtt("menuName"), arr);
 					#end
 			}
 		}

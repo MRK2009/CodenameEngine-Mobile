@@ -192,7 +192,7 @@ class Controls extends FlxActionSet
 	var _devReloadHold = new FlxActionDigital(Action.DEV_RELOAD_HOLD);
 	var _devReloadR = new FlxActionDigital(Action.DEV_RELOAD_R);
 
-	var byName:Map<String, FlxActionDigital> = [];
+	public var byName:Map<String, FlxActionDigital> = [];
 
 	public var gamepadsAdded:Array<Int> = [];
 	public var keyboardScheme = KeyboardScheme.None;
@@ -453,7 +453,7 @@ class Controls extends FlxActionSet
 		return getDialogueName(getActionFromControl(Control.createByName(token.toUpperCase())));
 	}
 
-	function getActionFromControl(control:Control):FlxActionDigital
+	public function getActionFromControl(control:Control):FlxActionDigital
 	{
 		return switch (control)
 		{
@@ -543,53 +543,37 @@ class Controls extends FlxActionSet
 				func(_downR, JUST_RELEASED);
 			case ACCEPT:
 				func(_accept, JUST_PRESSED);
-			case ACCEPT_HOLD:
 				func(_acceptHold, PRESSED);
-			case ACCEPT_R:
 				func(_acceptR, JUST_RELEASED);
 			case BACK:
 				func(_back, JUST_PRESSED);
-			case BACK_HOLD:
 				func(_backHold, PRESSED);
-			case BACK_R:
 				func(_backR, JUST_RELEASED);
 			case PAUSE:
 				func(_pause, JUST_PRESSED);
-			case PAUSE_HOLD:
 				func(_pauseHold, PRESSED);
-			case PAUSE_R:
 				func(_pauseR, JUST_RELEASED);
 			case RESET:
 				func(_reset, JUST_PRESSED);
-			case RESET_HOLD:
 				func(_resetHold, PRESSED);
-			case RESET_R:
 				func(_resetR, JUST_RELEASED);
 			/*case CHEAT:
 				func(_cheat, JUST_PRESSED); */
 			case SWITCHMOD:
 				func(_switchMod, JUST_PRESSED);
-			case SWITCHMOD_HOLD:
 				func(_switchModHold, PRESSED);
-			case SWITCHMOD_R:
 				func(_switchModR, JUST_RELEASED);
 			case DEV_ACCESS:
 				func(_devAccess, JUST_PRESSED);
-			case DEV_ACCESS_HOLD:
 				func(_devAccessHold, PRESSED);
-			case DEV_ACCESS_R:
 				func(_devAccessR, JUST_RELEASED);
 			case DEV_CONSOLE:
 				func(_devConsole, JUST_PRESSED);
-			case DEV_CONSOLE_HOLD:
 				func(_devConsoleHold, PRESSED);
-			case DEV_CONSOLE_R:
 				func(_devConsoleR, JUST_RELEASED);
 			case DEV_RELOAD:
 				func(_devReload, JUST_PRESSED);
-			case DEV_RELOAD_HOLD:
 				func(_devReloadHold, PRESSED);
-			case DEV_RELOAD_R:
 				func(_devReloadR, JUST_RELEASED);
 		}
 	}
@@ -677,13 +661,13 @@ class Controls extends FlxActionSet
 	public function unbindKeys(control:Control, keys:Array<FlxKey>)
 		inline forEachBound(control, (action, _) -> removeKeys(action, keys));
 
-	inline static function addKeys(action:FlxActionDigital, keys:Array<FlxKey>, state:FlxInputState)
+	inline public static function addKeys(action:FlxActionDigital, keys:Array<FlxKey>, state:FlxInputState)
 	{
 		for (key in keys)
 			action.addKey(key, state);
 	}
 
-	static function removeKeys(action:FlxActionDigital, keys:Array<FlxKey>)
+	public static function removeKeys(action:FlxActionDigital, keys:Array<FlxKey>)
 	{
 		var i = action.inputs.length;
 		while (i-- > 0)
