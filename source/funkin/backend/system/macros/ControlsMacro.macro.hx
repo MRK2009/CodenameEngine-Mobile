@@ -262,6 +262,9 @@ class ControlsMacro
 			internalName += type.substr(1);
 
 		var keyset: Null<String> = null;
+		#if TOUCH_CONTROLS
+		var tracedID :Null<String> = null;
+		#end
 		var expr: Expr = null;
 		var metasToRemove = [];
 		for (meta in field.meta)
@@ -294,14 +297,14 @@ class ControlsMacro
 					expr = macro func($i{internalName}, JUST_RELEASED);
 				#if TOUCH_CONTROLS
 				case ":mobileJustPressed":
-					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustPressed(MobileInputID.$mobileID);
+					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsJustPressed(MobileInputID.$trackedID);
 				case ":mobilePressed":
-					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsPressed(MobileInputID.$mobileID);
+					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsPressed(MobileInputID.$trackedID);
 				case ":mobileJustReleased":
-					final mobileID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					expr = macro mobileControlsJustReleased(MobileInputID.$mobileID);
+					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
+					expr = macro mobileControlsJustReleased(MobileInputID.$trackedID);
 				#end
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
@@ -342,6 +345,7 @@ class ControlsMacro
 		};
 
 		final isMobileControls:Bool = (expr != null && expr.toString().indexOf("mobileControls") != -1);
+		trace(expr);
 
 		// Generated Code:
 		// inline function get_UI_UP(): Bool
@@ -353,7 +357,7 @@ class ControlsMacro
 				ret: macro : Bool,
 				params: [],
 				expr: if (isMobileControls)
-					macro return expr
+					macro return expr;
 				else if (_allDevModeOnlyControls.contains(shortName))
 					macro return Options.devMode && $i{internalName}.check()
 				else
