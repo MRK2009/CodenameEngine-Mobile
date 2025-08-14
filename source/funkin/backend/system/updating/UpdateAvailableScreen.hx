@@ -100,6 +100,9 @@ class UpdateAvailableScreen extends MusicBeatState {
 		changeSelection(false);
 
 		DiscordUtil.call("onMenuLoaded", ["Update Available Screen"]);
+
+		addTouchPad("LEFT_RIGHT", "A");
+		addTouchPadCamera();
 	}
 
 	var destY:Float = 0;
