@@ -5,8 +5,7 @@
 
 		<!-- OpenFL & Lime (Required for Flixel) -->
 		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" />
-		<lib name="lime" version="8.1.2" />
-		<!-- <git name="lime" url="https://github.com/CodenameCrew/cne-lime" />  disabled for now until fixed -->
+		<git name="lime" url="https://github.com/th2l-devs/lime" ref="int-delta" />
 
 		<!-- Flixel -->
 		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" />
@@ -17,7 +16,7 @@
 		<git name="flxanimate" url="https://github.com/CodenameCrew/cne-flxanimate" />
 		<git name="hxdiscord_rpc" url="https://github.com/CodenameCrew/cne-hxdiscord_rpc" skipDeps="true" />
 		<git name="funkin-modchart" url="https://github.com/TheoDevelops/FunkinModchart" ref="f30676579d8de7ccac7d12e13b664e8b2c42c6bf" skipDeps="true" />
-		<lib name="hxvlc" version="1.9.3" skipDeps="true" />
+		<git name="hxvlc" url="https://github.com/HomuHomu833/cne-hxvlc" skipDeps="true" />
 
 		<!-- Documentation and other features -->
 		<git name="away3d" url="https://github.com/CodenameCrew/away3d" />
@@ -27,28 +26,8 @@
 
 		<lib name="nape-haxe4" />
 
-		<!-- For building lime -->
-		<lib global="true" name="hxp" /> <lib name="hxp" />
-		<lib global="true" name="format" /> <lib name="format" />
+		<lib name="format" />
 
-		<git name="hxcpp" url="https://github.com/CodenameCrew/cne-hxcpp" />
+		<git name="hxcpp" url="https://github.com/th2l-devs/hxcpp" />
 	</if>
-
-	<!-- Hxcpp Building -->
-	<if cond="build-hxcpp || all">
-		<print pretty="true">Rebuilding Hxcpp...</print>
-
-		<!-- Build hxcpp -->
-		<cmd inLib="hxcpp" dir="tools/hxcpp" cmd="haxe compile.hxml" />
-	</if>
-
-	<!-- Lime Building -->
-	<!-- <if cond="build-lime || all">
-		<print pretty="true">Rebuilding Lime...</print>
-
-		<!- - Build lime - ->
-		<cmd inLib="lime" cmd="haxelib run lime rebuild . $PLATFORM -release -clean" />
-		<cmd inLib="lime" dir="tools" cmd="haxe tools.hxml" />
-	</if> -->
-
 </libraries>

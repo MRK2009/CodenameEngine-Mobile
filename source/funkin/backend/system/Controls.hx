@@ -92,32 +92,16 @@ enum Control
 	NOTE_DOWN;
 	RESET;
 	ACCEPT;
-	ACCEPT_HOLD;
-	ACCEPT_R;
 	BACK;
-	BACK_HOLD;
-	BACK_R;
 	PAUSE;
-	PAUSE_HOLD;
-	PAUSE_R;
 	CHANGE_MODE;
-	CHANGE_MODE_HOLD;
-	CHANGE_MODE_R;
 	//CHEAT;
 	SWITCHMOD;
-	SWITCHMOD_HOLD;
-	SWITCHMOD_R;
 
 	// Debugs
 	DEV_ACCESS;
-	DEV_ACCESS_HOLD;
-	DEV_ACCESS_R;
 	DEV_CONSOLE;
-	DEV_CONSOLE_HOLD;
-	DEV_CONSOLE_R;
 	DEV_RELOAD;
-	DEV_RELOAD_HOLD;
-	DEV_RELOAD_R;
 }
 
 enum KeyboardScheme
@@ -174,10 +158,10 @@ class Controls extends FlxActionSet
 	var _reset = new FlxActionDigital(Action.RESET);
 	var _resetHold = new FlxActionDigital(Action.RESET_HOLD);
 	var _resetR = new FlxActionDigital(Action.RESET_R);
-	//var _cheat = new FlxActionDigital(Action.CHEAT);
 	var _changeMode = new FlxActionDigital(Action.CHANGE_MODE);
 	var _changeModeHold = new FlxActionDigital(Action.CHANGE_MODE_HOLD);
 	var _changeModeR = new FlxActionDigital(Action.CHANGE_MODE_R);
+	//var _cheat = new FlxActionDigital(Action.CHEAT);
 	var _switchMod = new FlxActionDigital(Action.SWITCHMOD);
 	var _switchModHold = new FlxActionDigital(Action.SWITCHMOD_HOLD);
 	var _switchModR = new FlxActionDigital(Action.SWITCHMOD_R);
@@ -295,15 +279,24 @@ class Controls extends FlxActionSet
 	public var PAUSE_HOLD(get, set):Bool;
 	inline function get_PAUSE_HOLD() return _pauseHold.check();
 	inline function set_PAUSE_HOLD(val:Bool) return @:privateAccess _pauseHold._checked = val;
-	public var PAUSE_R(get, set):Bool;
-	inline function get_PAUSE_R() return _pauseR.check();
-	inline function set_PAUSE_R(val:Bool) return @:privateAccess _pauseR._checked = val;
+	public var RESET(get, set):Bool;
+	inline function get_RESET() return _reset.check();
+	inline function set_RESET(val:Bool) return @:privateAccess _reset._checked = val;
 	public var RESET_HOLD(get, set):Bool;
 	inline function get_RESET_HOLD() return _resetHold.check();
 	inline function set_RESET_HOLD(val:Bool) return @:privateAccess _resetHold._checked = val;
 	public var RESET_R(get, set):Bool;
 	inline function get_RESET_R() return _resetR.check();
 	inline function set_RESET_R(val:Bool) return @:privateAccess _resetR._checked = val;
+	public var CHANGE_MODE(get, set):Bool;
+	inline function get_CHANGE_MODE() return _changeMode.check();
+	inline function set_CHANGE_MODE(val) return @:privateAccess _changeMode._checked = val;
+	public var CHANGE_MODE_HOLD(get, set):Bool;
+	inline function get_CHANGE_MODE_HOLD() return _changeModeHold.check();
+	inline function set_CHANGE_MODE_HOLD(val:Bool) return @:privateAccess _changeModeHold._checked = val;
+	public var CHANGE_MODE_R(get, set):Bool;
+	inline function get_CHANGE_MODE_R() return _changeModeR.check();
+	inline function set_CHANGE_MODE_R(val:Bool) return @:privateAccess _changeModeR._checked = val;
 	/*public var CHEAT(get, set):Bool;
 	inline function get_CHEAT() return _cheat.check();
 	inline function set_CHEAT(val) return @:privateAccess _cheat._checked = val;*/
