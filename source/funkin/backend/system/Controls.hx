@@ -60,11 +60,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP])
 	#end
-	@:mobilePressed("up")
 	@:pressed("up") public var UP(get, set): Bool;
-	@:mobileJustPressed("up")
 	@:justPressed("up") public var UP_P(get, set): Bool;
-	@:mobileJustReleased("up")
 	@:justReleased("up") public var UP_R(get, set): Bool;
 
 	#if !switch
@@ -72,11 +69,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT])
 	#end
-	@:mobilePressed("left")
 	@:pressed("left") public var LEFT(get, set): Bool;
-	@:mobileJustPressed("left")
 	@:justPressed("left") public var LEFT_P(get, set): Bool;
-	@:mobileJustReleased("left")
 	@:justReleased("left") public var LEFT_R(get, set): Bool;
 
 	#if !switch
@@ -84,11 +78,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT])
 	#end
-	@:mobilePressed("right")
 	@:pressed("right") public var RIGHT(get, set): Bool;
-	@:mobileJustPressed("right")
 	@:justPressed("right") public var RIGHT_P(get, set): Bool;
-	@:mobileJustReleased("right")
 	@:justReleased("right") public var RIGHT_R(get, set): Bool;
 
 	#if !switch
@@ -96,11 +87,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN])
 	#end
-	@:mobilePressed("down")
 	@:pressed("down") public var DOWN(get, set): Bool;
-	@:mobileJustPressed("down")
 	@:justPressed("down") public var DOWN_P(get, set): Bool;
-	@:mobileJustReleased("down")
 	@:justReleased("down") public var DOWN_R(get, set): Bool;
 
 	// Note Controls
@@ -110,11 +98,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_UP, LEFT_STICK_DIGITAL_UP, RIGHT_STICK_DIGITAL_UP])
 	#end
-	@:mobilePressed("hitbox-up")
 	@:pressed("note-up") public var NOTE_UP(get, set): Bool;
-	@:mobileJustPressed("hitbox-up")
 	@:justPressed("note-up") public var NOTE_UP_P(get, set): Bool;
-	@:mobileJustReleased("hitbox-up")
 	@:justReleased("note-up") public var NOTE_UP_R(get, set): Bool;
 
 	#if !switch
@@ -122,11 +107,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_LEFT, LEFT_STICK_DIGITAL_LEFT, RIGHT_STICK_DIGITAL_LEFT])
 	#end
-	@:mobilePressed("hitbox-left")
 	@:pressed("note-left") public var NOTE_LEFT(get, set): Bool;
-	@:mobileJustPressed("hitbox-left")
 	@:justPressed("note-left") public var NOTE_LEFT_P(get, set): Bool;
-	@:mobileJustReleased("hitbox-left")
 	@:justReleased("note-left") public var NOTE_LEFT_R(get, set): Bool;
 
 	#if !switch
@@ -134,11 +116,8 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_RIGHT, LEFT_STICK_DIGITAL_RIGHT, RIGHT_STICK_DIGITAL_RIGHT])
 	#end
-	@:mobilePressed("hitbox-right")
 	@:pressed("note-right") public var NOTE_RIGHT(get, set): Bool;
-	@:mobileJustPressed("hitbox-right")
 	@:justPressed("note-right") public var NOTE_RIGHT_P(get, set): Bool;
-	@:mobileJustReleased("hitbox-right")
 	@:justReleased("note-right") public var NOTE_RIGHT_R(get, set): Bool;
 
 	#if !switch
@@ -146,41 +125,23 @@ class Controls extends FlxActionSet
 	#else
 	@:rawGamepad([DPAD_DOWN, LEFT_STICK_DIGITAL_DOWN, RIGHT_STICK_DIGITAL_DOWN])
 	#end
-	@:mobilePressed("hitbox-down")
 	@:pressed("note-down") public var NOTE_DOWN(get, set): Bool;
-	@:mobileJustPressed("hitbox-down")
 	@:justPressed("note-down") public var NOTE_DOWN_P(get, set): Bool;
-	@:mobileJustReleased("hitbox-down")
 	@:justReleased("note-down") public var NOTE_DOWN_R(get, set): Bool;
 
 	@:gamepad([A])
-	@:mobilePressed("A")
 	@:justPressed("accept") public var ACCEPT(get, set): Bool;
-	@:mobileJustPressed("A")
 	@:pressed("accept") public var ACCEPT_HOLD(get, set): Bool;
-	@:mobileJustReleased("A")
 	@:justReleased("accept") public var ACCEPT_R(get, set): Bool;
 
 	@:gamepad([B])
-	@:mobilePressed("B")
 	@:justPressed("back") public var BACK(get, set): Bool;
-	@:mobileJustPressed("B")
 	@:pressed("back") public var BACK_HOLD(get, set): Bool;
-	@:mobileJustReleased("B")
 	@:justReleased("back") public var BACK_R(get, set): Bool;
 
 	@:gamepad([START])
-	#if (TOUCH_CONTROLS && !android)
-	@:mobilePressed("P")
-	#end
 	@:justPressed("pause") public var PAUSE(get, set): Bool;
-	#if (TOUCH_CONTROLS && !android)
-	@:mobileJustPressed("P")
-	#end
 	@:pressed("pause") public var PAUSE_HOLD(get, set): Bool;
-	#if (TOUCH_CONTROLS && !android)
-	@:mobileJustReleased("P")
-	#end
 	@:justReleased("pause") public var PAUSE_R(get, set): Bool;
 
 	@:gamepad([Y])

@@ -264,9 +264,6 @@ class ControlsMacro
 		var keyset: Null<String> = null;
 		var expr: Expr = null;
 		var metasToRemove = [];
-
-		var trackedID :Null<String> = null;
-		var trackedState :Null<String> = null;
 		for (meta in field.meta)
 		{
 			var shouldRemove = true;
@@ -295,18 +292,6 @@ class ControlsMacro
 				case ":justReleased":
 					keyset = extractString(meta.params[0]);
 					expr = macro func($i{internalName}, JUST_RELEASED);
-				case ":mobileJustPressed":
-					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					trackedState = "JustPressed";
-					// expr = macro mobileControlsJustPressed(MobileInputID.$trackedID);
-				case ":mobilePressed":
-					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					trackedState = "Pressed";
-					// expr = macro mobileControlsPressed(MobileInputID.$trackedID);
-				case ":mobileJustReleased":
-					trackedID = extractString(meta.params[0]).replace("-", "_").toUpperCase();
-					trackedState = "JustReleased";
-					// expr = macro mobileControlsJustReleased(MobileInputID.$trackedID);
 				case ":devModeOnly":
 					if (!_allDevModeOnlyControls.contains(shortName))
 						_allDevModeOnlyControls.push(shortName);
@@ -345,12 +330,9 @@ class ControlsMacro
 			meta: []
 		};
 
-		var funcIdent: Expr = macro ${Context.getIdent("mobileControls" + trackedState)};
-		var argIdent: Expr = macro ${Context.getIdent(trackedID)};
-
 		// Generated Code:
 		// inline function get_UI_UP(): Bool
-		//     return (_uiUp.check() || mobileControlsJustPressed(MobileInputID.UP)); or return Options.devMode && (_uiUp.check() || mobileControlsJustPressed(MobileInputID.UP)); depending if its dev mode
+		//     return _uiUp.check(); or return Options.devMode && _uiUp.check(); depending if its dev mode
 		var getField: Field = {
 			name: "get_" + name,
 			access: [APrivate, AInline],
@@ -358,8 +340,8 @@ class ControlsMacro
 				ret: macro : Bool,
 				params: [],
 				expr: _allDevModeOnlyControls.contains(shortName) ?
-					(macro return Options.devMode && ($i{internalName}.check() || $i{funcIdent}(MobileInputID.$i{argIdent}))) :
-					(macro return ($i{internalName}.check() || $i{funcIdent}(MobileInputID.$i{argIdent}))),
+					(macro return Options.devMode && $i{internalName}.check()) :
+					(macro return $i{internalName}.check()),
 				args: []
 			}),
 			pos: field.pos,
