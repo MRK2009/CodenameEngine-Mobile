@@ -353,7 +353,7 @@ class ControlsMacro
 				ret: macro : Bool,
 				params: [],
 				expr: if (isMobileControls)
-					expr
+					macro return expr
 				else if (_allDevModeOnlyControls.contains(shortName))
 					macro return Options.devMode && $i{internalName}.check()
 				else
@@ -374,10 +374,13 @@ class ControlsMacro
 			kind: FFun({
 				ret: macro : Bool,
 				params: [],
-				expr: macro
-				{
-					return @:privateAccess $i{internalName}._checked = val;
-				},
+				expr: if (isMobileControls)
+					macro return;
+				else
+					macro
+					{
+						return @:privateAccess $i{internalName}._checked = val;
+					},
 				args: [{name: "val", type: macro : Bool}]
 			}),
 			pos: field.pos,
