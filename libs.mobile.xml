@@ -1,23 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<libraries>
-	<!-- OpenFL & Lime (Required for Flixel) -->
-	<lib name="openfl" version="9.2.2" />
-	<git name="lime" url="https://github.com/MobilePorting/lime" />
+<libraries checkVersion="update || all">
+	<if cond="update || all">
+		<print pretty="true">Preparing installation...</print>
 
-	<!-- Flixel -->
-	<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" />
-	<git name="flixel-addons" url="https://github.com/CodenameCrew/cne-flixel-addons" />
+		<!-- OpenFL & Lime (Required for Flixel) -->
+		<git name="openfl" url="https://github.com/CodenameCrew/cne-openfl" />
+		<lib name="lime" url="https://github.com/th2l-devs/lime" />
 
-	<!-- Other Libraries -->
-	<git name="hscript-improved" url="https://github.com/CodenameCrew/hscript-improved" ref="custom-classes" />
-	<git name="flxanimate" url="https://github.com/CodenameCrew/cne-flxanimate" />
-	<lib name="hxvlc" version="1.9.3" skipDeps="true" />
-	<git name="hxcpp" url="https://github.com/MobilePorting/hxcpp" />
+		<!-- Flixel -->
+		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" />
+		<git name="flixel-addons" url="https://github.com/CodenameCrew/cne-flixel-addons" />
 
-	<!-- Documentation and other features -->
-	<git name="away3d" url="https://github.com/CodenameCrew/away3d" />
-	<!-- <lib name="dox" /> -->
-	<lib name="format" />
-	<lib name="markdown" />
-	<lib name="nape-haxe4" />
+		<!-- Other Libraries -->
+		<git name="hscript-improved" url="https://github.com/CodenameCrew/hscript-improved" ref="codename-dev" />
+		<git name="flxanimate" url="https://github.com/CodenameCrew/cne-flxanimate" />
+		<git name="hxdiscord_rpc" url="https://github.com/CodenameCrew/cne-hxdiscord_rpc" skipDeps="true" />
+		<git name="funkin-modchart" url="https://github.com/TheoDevelops/FunkinModchart" ref="f30676579d8de7ccac7d12e13b664e8b2c42c6bf" skipDeps="true" />
+		<lib name="hxvlc" version="2.0.1" skipDeps="true" />
+
+		<!-- Documentation and other features -->
+		<git name="away3d" url="https://github.com/CodenameCrew/away3d" />
+		<!-- <lib name="dox" /> -->
+		<lib name="markdown" />
+		<lib name="hxcpp-debug-server" />
+
+		<lib name="nape-haxe4" />
+
+		<git name="hxcpp" url="https://github.com/th2l-devs/hxcpp" />
+	</if>
 </libraries>
