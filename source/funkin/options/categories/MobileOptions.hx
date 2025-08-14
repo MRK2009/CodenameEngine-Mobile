@@ -18,7 +18,7 @@ class MobileOptions extends TreeMenuScreen
 			MusicBeatState.getState().removeTouchPad();
 			MusicBeatState.getState().addTouchPad("LEFT_FULL", "A_B");
 		}));
-		add(new NumOption("TouchPad Opacity", "Change how opaque the TouchPad should be", 0.0, 1.0, 0.1, "touchPadAlpha", () ->
+		add(new NumOption("TouchPad Opacity", "Change how opaque the TouchPad should be", 0.0, 1.0, 0.1, "touchPadAlpha", (alpha:Float) ->
 		{
 			MusicBeatState.getState().touchPad.alpha = alpha;
 			if (funkin.backend.system.Controls.instance.touchC)
