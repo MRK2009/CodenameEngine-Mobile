@@ -1015,7 +1015,6 @@ class Controls extends FlxActionSet
 		#end
 	}
 
-	// lazy
 	public function getMobileIDFromControl(control:Control):MobileInputID
 	{
 		return switch (control)
@@ -1024,21 +1023,13 @@ class Controls extends FlxActionSet
 			case DOWN: MobileInputID.DOWN;
 			case LEFT: MobileInputID.LEFT;
 			case RIGHT: MobileInputID.RIGHT;
-			// Todo
-			// case NOTE_UP: _noteUp;
-			// case NOTE_DOWN: _noteDown;
-			// case NOTE_LEFT: _noteLeft;
-			// case NOTE_RIGHT: _noteRight;
+			case NOTE_UP: MobileInputID.HITBOX_UP;
+			case NOTE_DOWN: MobileInputID.HITBOX_DOWN;
+			case NOTE_LEFT: MobileInputID.HITBOX_LEFT;
+			case NOTE_RIGHT: MobileInputID.HITBOX_RIGHT;
 			case ACCEPT: MobileInputID.A;
 			case BACK: MobileInputID.B;
 			case PAUSE: MobileInputID.P;
-			// case RESET: _reset;
-			// case CHANGE_MODE: _changeMode;
-			// case CHEAT: _cheat;
-			// case SWITCHMOD: _switchMod;
-			// case DEV_ACCESS: _devAccess;
-			// case DEV_CONSOLE: _devConsole;
-			// case DEV_RELOAD: _devReload;
 		}
 	}
 
