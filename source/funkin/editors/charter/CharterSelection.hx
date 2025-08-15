@@ -17,7 +17,7 @@ class CharterSelection extends EditorTreeMenu {
 		DiscordUtil.call("onEditorTreeLoaded", ["Chart Editor"]);
 		addMenu(new CharterSelectionScreen());
 		bgType = 'charter';
-		addTouchPad("LEFT_FULL", "A_B");
+		addTouchPad("UP_DOWN", "A_B");
 		addTouchPadCamera();
 	}
 }

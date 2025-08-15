@@ -22,6 +22,8 @@ class TreeMenuScreen extends FlxSpriteGroup {
 
 	public var name:String;
 	public var desc:String;
+	public var prevMenuTPadModes:Array<String> = [];
+	
 	/**
 	 * The prefix to add to the translations ids.
 	**/
@@ -60,13 +62,25 @@ class TreeMenuScreen extends FlxSpriteGroup {
 	var curFloatOption:ITreeFloatOption;
 	var __firstFrame:Bool = true;
 
-	public function new(name:String, desc:String, ?prefix:String, ?objects:Array<FlxSprite>) {
+	public function new(name:String, desc:String, ?prefix:String, ?objects:Array<FlxSprite>, ?menuTPadModes:Array<String>) {
 		super();
 		this.prefix = prefix;
 		rawName = name;
 		rawDesc = desc;
 
 		turboBasics = [leftTurboControl, rightTurboControl, upTurboControl, downTurboControl];
+
+		#if TOUCH_CONTROLS
+		if (menuTPadModes != null)
+		{
+			final state = MusicBeatState.getState();
+			this.prevMenuTPadModes = [state.touchPad.curDPadMode, state.touchPad.curActionMode];
+			state.removeTouchPad();
+
+			state.addTouchPad(menuTPadModes[0], menuTPadModes[1]);
+			state.addTouchPadCamera();
+		}
+		#end
 
 		if (objects != null) for (object in objects) add(object);
 	}
@@ -155,6 +169,17 @@ class TreeMenuScreen extends FlxSpriteGroup {
 		else parent.removeMenu(this);
 
 		CoolUtil.playMenuSFX(CANCEL).persist = true;
+
+		#if TOUCH_CONTROLS
+		if (prevMenuTPadModes.length > 0)
+		{
+			final state = MusicBeatState.getState();
+			state.removeTouchPad();
+
+			state.addTouchPad(prevMenuTPadModes[0], prevMenuTPadModes[1]);
+			state.addTouchPadCamera();
+		}
+		#end
 	}
 
 	public function changeSelection(change:Int, force:Bool = false) {

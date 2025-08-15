@@ -14,7 +14,7 @@ class StageSelection extends EditorTreeMenu {
 		super.create();
 		DiscordUtil.call("onEditorTreeLoaded", ["Stage Editor"]);
 		addMenu(new StageSelectionScreen());
-		addTouchPad("LEFT_FULL", "A_B");
+		addTouchPad("UP_DOWN", "A_B");
 		addTouchPadCamera();
 	}
 }

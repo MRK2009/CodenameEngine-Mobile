@@ -74,8 +74,8 @@ class TouchPad extends MobileInputManager
 	public var buttonZ:TouchButton = new TouchButton(0, 0, [MobileInputID.Z]);
 
 	public var instance:MobileInputManager;
-	public var curDPadMode:String = "NONE";
-	public var curActionMode:String = "NONE";
+	public var curDPadMode(default, null):String = "NONE";
+	public var curActionMode(default, null):String = "NONE";
 
 	/**
 	 * Create a gamepad.

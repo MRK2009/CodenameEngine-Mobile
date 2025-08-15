@@ -13,7 +13,7 @@ class AlphabetSelection extends EditorTreeMenu {
 		super.create();
 		DiscordUtil.call("onEditorTreeLoaded", ["Alphabet Editor"]);
 		addMenu(new AlphabetSelectionScreen());
-		addTouchPad("LEFT_FULL", "A_B");
+		addTouchPad("UP_DOWN", "A_B");
 		addTouchPadCamera();
 	}
 }

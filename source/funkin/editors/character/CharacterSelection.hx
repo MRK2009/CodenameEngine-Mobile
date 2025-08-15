@@ -14,7 +14,7 @@ class CharacterSelection extends EditorTreeMenu {
 		super.create();
 		DiscordUtil.call("onEditorTreeLoaded", ["Character Editor"]);
 		addMenu(new CharacterSelectionScreen());
-		addTouchPad("LEFT_FULL", "A_B");
+		addTouchPad("UP_DOWN", "A_B");
 		addTouchPadCamera();
 	}
 }

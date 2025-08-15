@@ -11,9 +11,10 @@ import funkin.options.type.*;
 typedef OptionCategory = {
 	var name:String;
 	var desc:String;
-	var ?state:OneOfThree<TreeMenuScreen, Class<TreeMenuScreen>, (name:String, desc:String) -> TreeMenuScreen>;
+	var ?state:OneOfThree<TreeMenuScreen, Class<TreeMenuScreen>, (name:String, desc:String, ?touchPadModes:Array<String>) -> TreeMenuScreen>;
 	var ?substate:OneOfThree<MusicBeatSubstate, Class<MusicBeatSubstate>, (name:String, desc:String) -> MusicBeatSubstate>;
 	var ?suffix:String;
+	var ?touchPadModes:Array<String>;
 }
 
 class OptionsMenu extends TreeMenu {
@@ -97,11 +98,11 @@ class OptionsMenu extends TreeMenu {
 				if (o.state is TreeMenuScreen)
 					addMenu(o.state);
 				else if (Reflect.isFunction(o.state)) {
-					var state:(name:String, desc:String) -> TreeMenuScreen = o.state;
-					addMenu(state(o.name, o.desc));
+					var state:(name:String, desc:String, ?touchPadModes:Array<String>) -> TreeMenuScreen = o.state;
+					addMenu(state(o.name, o.desc, o.touchPadModes));
 				}
 				else { // o.state is Class<TreeMenuScreen>
-					addMenu(Type.createInstance(o.state, [o.name, o.desc]));
+					addMenu(Type.createInstance(o.state, [o.name, o.desc, null, null, o.touchPadModes]));
 				}
 			}
 		})]));
@@ -119,8 +120,10 @@ class OptionsMenu extends TreeMenu {
 				if (access != null) for (o in parseOptionsFromXML(first, access)) first.add(o);
 			}
 		}
-		addTouchPad('LEFT_FULL', 'A_B');
+		#if TOUCH_CONTROLS
+		addTouchPad('UP_DOWN', 'A_B');
 		addTouchPadCamera();
+		#end
 	}
 
 	function checkDebugOption() {
