@@ -17,7 +17,7 @@
 	</group>
 
 	<group name="UIImageExplorer" prefix="uiImageExplorer.">
-		<str id="symbol">Sìmbolo</str>
+		<str id="symbol">Símbolo</str>
 		<str id="animation">Animación</str>
 		<str id="atlas">Atlas</str>
 		<str id="spritemap">Mapa de sprites</str>
