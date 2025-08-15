@@ -2,29 +2,6 @@
 <language>
 	<str id="optionsMenu.desc-missing">No Description</str>
 
-	<group name="MobileOptions" prefix="MobileOptions.">
-		<str id="extraHints-name">Extra Hitbox</str>
-		<str id="extraHints-desc">Selecciona cuantas Pistas Extras quieres tener en la Hitbox.</str>
-
-		<str id="hitboxAlpha-name">Opacidad del Hitbox</str>
-		<str id="hitboxAlpha-desc">Cambia cuan trasparente quieres que este la Hitbox</str>
-
-		<str id="oldPadTexture-name">Usar Textura Antigua del Pad</str>
-		<str id="oldPadTexture-desc">Si se activa, se usara la Textura antigua del TouchPad</str>
-
-		<str id="touchPadAlpha-name">Opacidad del TouchPad"</str>
-		<str id="touchPadAlpha-desc">Cambia cuan transparente quieres que este el TouchPad</str>
-
-		<str id="hitboxType-name">Diseño Del Hitbox"</str>
-		<str id="hitboxType-desc">Elige como quieres que se vea tu Hitbox!</str>
-
-		<str id="hitboxPos-name">Posicion de la Hitbox"</str>
-		<str id="hitboxPos-desc">Si se activa, la Hitbox se colocara en la parte inferior de la pantalla, de lo contrario permanecera en la parte superior.</str>
-
-		<str id="screenTimeOut-name">Permitir Tiempo de Espera"</str>
-		<str id="screenTimeOut-desc">Si se activa, el Movil entrara en el Modo Descanso si el Usuario esta Inactivo</str>
-	<group/>
-
 	<group name="OptionsMenu">
 		<str id="optionsMenu.advanced">Avanzado</str>
 		<str id="optionsMenu.header.title">Opciones</str>
@@ -112,6 +89,29 @@
 			<str id="gpuOnlyBitmaps-name">Sprites en GPU</str>
 			<str id="gpuOnlyBitmaps-desc">Si está activado, todos los sprites serán cargados en el GPU, liberando MUCHA memoria (EXPERIMENTAL). Desactivar esto consumirá mucha RAM, en especial con sprites grandes. Si no estás seguro, déjalo activado.</str>
 		</group>
+	</group>
+
+	<group name="MobileOptions" prefix="MobileOptions.">
+		<str id="extraHints-name">Extra Hitbox</str>
+		<str id="extraHints-desc">Selecciona cuantas Pistas Extras quieres tener en la Hitbox.</str>
+
+		<str id="hitboxAlpha-name">Opacidad del Hitbox</str>
+		<str id="hitboxAlpha-desc">Cambia cuan trasparente quieres que este la Hitbox</str>
+
+		<str id="oldPadTexture-name">Usar Textura Antigua del Pad</str>
+		<str id="oldPadTexture-desc">Si se activa, se usara la Textura antigua del TouchPad</str>
+
+		<str id="touchPadAlpha-name">Opacidad del TouchPad"</str>
+		<str id="touchPadAlpha-desc">Cambia cuan transparente quieres que este el TouchPad</str>
+
+		<str id="hitboxType-name">Diseño Del Hitbox"</str>
+		<str id="hitboxType-desc">Elige como quieres que se vea tu Hitbox!</str>
+
+		<str id="hitboxPos-name">Posicion de la Hitbox"</str>
+		<str id="hitboxPos-desc">Si se activa, la Hitbox se colocara en la parte inferior de la pantalla, de lo contrario permanecera en la parte superior.</str>
+
+		<str id="screenTimeOut-name">Permitir Tiempo de Espera"</str>
+		<str id="screenTimeOut-desc">Si se activa, el Movil entrara en el Modo Descanso si el Usuario esta Inactivo</str>
 	</group>
 
 	<group name="GameplayOptions" prefix="GameplayOptions.">
