@@ -50,8 +50,8 @@
 		<str id="optionsTree.debug-name">Debug Options</str>
 		<str id="optionsTree.debug-desc">Debug Options for Developer Mode.</str>
 
-		<str id="optionsTree.mobile-name">Opciones Movil</str>
-		<str id="optionsTree.mobile-desc">Cambia Opciones relacionado al apartado Movil o los Controles Moviles.</str>
+		<str id="optionsTree.mobile-name">Mobile Options</str>
+		<str id="optionsTree.mobile-desc">Change Options related to Mobile or Touch Controls.</str>
 	</group>
 
 	<group name="KeybindOptions" prefix="KeybindsOptions.">

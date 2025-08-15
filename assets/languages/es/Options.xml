@@ -48,9 +48,6 @@
 		<str id="optionsTree.debug-name">Desarrollador</str>
 		<str id="optionsTree.debug-desc">Opciones para el Modo Desarrollador.</str>
 
-		<str id="optionsTree.debug-name">Desarrollador</str>
-		<str id="optionsTree.debug-desc">Opciones para el Modo Desarrollador.</str>
-
 		<str id="optionsTree.mobile-name">Opciones Movil</str>
 		<str id="optionsTree.mobile-desc">Cambia Opciones relacionado al apartado Movil o los Controles Moviles.</str>
 
