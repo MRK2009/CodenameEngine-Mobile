@@ -37,8 +37,8 @@ class OptionsMenu extends TreeMenu {
 		},
 		#if (mobile || TOUCH_CONTROLS)
 		{
-			name: 'Mobile Options',
-			desc: 'Change Options related to Mobile or Touch Controls',
+			name: 'optionsTree.mobile-name',
+			desc: 'optionsTree.mobile-desc',
 			state: MobileOptions
 		},
 		#end
