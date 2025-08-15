@@ -6,19 +6,19 @@ import lime.system.System as LimeSystem;
 class MobileOptions extends TreeMenuScreen
 {
 	public function new()
-	{
-		super('Mobile', 'Change Mobile Related Things such as Controls alpha, screen timeout....', 'MobileOptions.', ['LEFT_FULL', 'A_B']);
+	{ 
+		super('optionsTree.mobile-name', 'optionsTree.mobile-name', 'MobileOptions.', ['LEFT_FULL', 'A_B']);
 
 		#if TOUCH_CONTROLS
-		add(new ArrayOption("Extra Hints", "Select how many extra hints you prefer to have on hitbox", ['NONE', 'SINGLE', 'DOUBLE'],
+		add(new ArrayOption(getNameID('extraHints'), getDescID('extraHints'), ['NONE', 'SINGLE', 'DOUBLE'],
 			["None", "Single", "Double"], 'extraHints'));
-		add(new NumOption("Hitbox Opacity", "Change how opaque the Hitbox should be", 0.0, 1.0, 0.1, "hitboxAlpha"));
-		add(new Checkbox("Use Old Pad Texture", "If checked, the TouchPad will use the old texture it used before", "oldPadTexture", () ->
+		add(new NumOption(getNameID('hitboxAlpha'), getDescID('hitboxAlpha'), 0.0, 1.0, 0.1, "hitboxAlpha"));
+		add(new Checkbox(getNameID('oldPadTexture'), getDescID('oldPadTexture'), "oldPadTexture", () ->
 		{
 			MusicBeatState.getState().removeTouchPad();
 			MusicBeatState.getState().addTouchPad("LEFT_FULL", "A_B");
 		}));
-		add(new NumOption("TouchPad Opacity", "Change how opaque the TouchPad should be", 0.0, 1.0, 0.1, "touchPadAlpha", (alpha:Float) ->
+		add(new NumOption(getNameID('touchPadAlpha'), getDescID('touchPadAlpha'), 0.0, 1.0, 0.1, "touchPadAlpha", (alpha:Float) ->
 		{
 			MusicBeatState.getState().touchPad.alpha = alpha;
 			if (funkin.backend.system.Controls.instance.touchC)
@@ -34,12 +34,12 @@ class MobileOptions extends TreeMenuScreen
 				FlxG.sound.muteKeys = [FlxKey.ZERO, FlxKey.NUMPADZERO];
 			}
 		}));
-		add(new ArrayOption("Hitbox Design", "Choose how your Hitbox should look like!", ['noGradient', 'noGradientOld', 'gradient', 'hidden'],
+		add(new ArrayOption(getNameID('hitboxType'), getDescID('hitboxType'), ['noGradient', 'noGradientOld', 'gradient', 'hidden'],
 			["No Gradient", "No Gradient (Old)", "Gradient", "Hidden"], 'hitboxType'));
-		add(new Checkbox("Hitbox Position", "If checked, the Hitbox will be put at the bottom of the screen, otherwise will stay at the top.", "hitboxPos"));
+		add(new Checkbox(getNameID('hitboxPos'), getDescID('hitboxPos'), "hitboxPos"));
 		#end
 		#if mobile
-		add(new Checkbox("Allow Screen Timeout", "If checked, The phone will enter sleep mode if the player is inactive.", "screenTimeOut", () ->
+		add(new Checkbox(getNameID('screenTimeOut'), getDescID('screenTimeOut'), "screenTimeOut", () ->
 		{
 			LimeSystem.allowScreenTimeout = Options.screenTimeOut;
 		}));
