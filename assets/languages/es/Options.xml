@@ -104,13 +104,13 @@
 		<str id="touchPadAlpha-name">Opacidad del TouchPad"</str>
 		<str id="touchPadAlpha-desc">Cambia cuan transparente quieres que este el TouchPad</str>
 
-		<str id="hitboxType-name">Diseño Del Hitbox"</str>
+		<str id="hitboxType-name">Diseño Del Hitbox</str>
 		<str id="hitboxType-desc">Elige como quieres que se vea tu Hitbox!</str>
 
-		<str id="hitboxPos-name">Posicion de la Hitbox"</str>
+		<str id="hitboxPos-name">Posicion de la Hitbox</str>
 		<str id="hitboxPos-desc">Si se activa, la Hitbox se colocara en la parte inferior de la pantalla, de lo contrario permanecera en la parte superior.</str>
 
-		<str id="screenTimeOut-name">Permitir Tiempo de Espera"</str>
+		<str id="screenTimeOut-name">Permitir Tiempo de Espera</str>
 		<str id="screenTimeOut-desc">Si se activa, el Movil entrara en el Modo Descanso si el Usuario esta Inactivo</str>
 	</group>
 
