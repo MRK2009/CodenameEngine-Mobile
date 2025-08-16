@@ -1,9 +1,7 @@
 name: Release
 on: workflow_dispatch
 
-permissions:
-  contents: write
-  discussions: write
+permissions: write-all
 
 jobs:
   build-android:
@@ -14,7 +12,6 @@ jobs:
   Releaser:
     needs: [build-android, build-ios]
     runs-on: ubuntu-latest
-    permissions: write-all
     steps:
       - name: Download Android Build
         uses: actions/download-artifact@main
