@@ -42,11 +42,19 @@ class MainState extends FlxState {
 				return;
 			}
 			#end
+		}
+		else
+		{
 			#if TOUCH_CONTROLS
-			mobile.funkin.backend.utils.MobileData.init();
+			mobile.funkin.backend.utils.MobileData.clearTouchPadData();
 			#end
 		}
+
 		initiated = true;
+
+		#if TOUCH_CONTROLS
+		mobile.funkin.backend.utils.MobileData.init();
+		#end
 
 		#if sys
 		CoolUtil.deleteFolder('.temp/'); // delete temp folder

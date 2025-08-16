@@ -34,7 +34,13 @@ class MobileData
 			}
 	}
 
-	public static function setMap(folder:String, map:Map<String, TouchButtonsData>)
+	public static function clearTouchPadData()
+	{
+		dpadModes.clear();
+		actionModes.clear();
+	}
+
+	private static function setMap(folder:String, map:Map<String, TouchButtonsData>)
 	{
 		for (file in FileSystem.readDirectory(folder))
 		{
