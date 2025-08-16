@@ -50,6 +50,7 @@ class NativeApplication
 	private var gamepadEventInfo = new GamepadEventInfo();
 	private var joystickEventInfo = new JoystickEventInfo();
 	private var keyEventInfo = new KeyEventInfo();
+	private var orientationEventInfo = new OrientationEventInfo();
 	private var mouseEventInfo = new MouseEventInfo();
 	private var renderEventInfo = new RenderEventInfo(RENDER);
 	private var sensorEventInfo = new SensorEventInfo();
@@ -59,6 +60,10 @@ class NativeApplication
 	private var windowEventInfo = new WindowEventInfo();
 
 	public var handle:Dynamic;
+
+	#if android
+	private var deviceOrientationListener:OrientationChangeListener;
+	#end
 
 	private var pauseTimer:Int;
 	private var parent:Application;
@@ -81,6 +86,13 @@ class NativeApplication
 
 		#if (ios || android || tvos)
 		Sensor.registerSensor(SensorType.ACCELEROMETER, 0);
+		#end
+
+		#if android
+		var setDeviceOrientationListener = JNI.createStaticMethod("org/haxe/lime/GameActivity", "setDeviceOrientationListener",
+			"(Lorg/haxe/lime/HaxeObject;)V");
+		deviceOrientationListener = new OrientationChangeListener(handleJNIOrientationEvent);
+		setDeviceOrientationListener(deviceOrientationListener);
 		#end
 
 		#if (!macro && lime_cffi)
@@ -117,6 +129,9 @@ class NativeApplication
 		NativeCFFI.lime_text_event_manager_register(handleTextEvent, textEventInfo);
 		NativeCFFI.lime_touch_event_manager_register(handleTouchEvent, touchEventInfo);
 		NativeCFFI.lime_window_event_manager_register(handleWindowEvent, windowEventInfo);
+		#if (ios || android)
+		NativeCFFI.lime_orientation_event_manager_register(handleOrientationEvent, orientationEventInfo);
+		#end
 		#if (ios || android || tvos)
 		NativeCFFI.lime_sensor_event_manager_register(handleSensorEvent, sensorEventInfo);
 		#end
@@ -236,7 +251,9 @@ class NativeApplication
 				var joystick = Joystick.devices.get(joystickEventInfo.id);
 				if (joystick != null) joystick.onHatMove.dispatch(joystickEventInfo.index, joystickEventInfo.eventValue);
 
-			case TRACKBALL_MOVE: // I guess this was just removed ??
+			case TRACKBALL_MOVE:
+				var joystick = Joystick.devices.get(joystickEventInfo.id);
+				if (joystick != null) joystick.onTrackballMove.dispatch(joystickEventInfo.index, joystickEventInfo.x, joystickEventInfo.y);
 
 			case BUTTON_DOWN:
 				var joystick = Joystick.devices.get(joystickEventInfo.id);
@@ -362,6 +379,27 @@ class NativeApplication
 			}
 		}
 	}
+
+	private function handleOrientationEvent():Void
+	{
+		var orientation:Orientation = cast orientationEventInfo.orientation;
+		var display = orientationEventInfo.display;
+		switch (orientationEventInfo.type)
+		{
+			case DISPLAY_ORIENTATION_CHANGE:
+				parent.onDisplayOrientationChange.dispatch(display, orientation);
+			case DEVICE_ORIENTATION_CHANGE:
+				parent.onDeviceOrientationChange.dispatch(orientation);
+		}
+	}
+
+	#if android
+	private function handleJNIOrientationEvent(newOrientation:Int):Void
+	{
+		var orientation:Orientation = cast newOrientation;
+		parent.onDeviceOrientationChange.dispatch(orientation);
+	}
+	#end
 
 	private function handleRenderEvent():Void
 	{
@@ -768,12 +806,12 @@ class NativeApplication
 
 @:keep /*private*/ class KeyEventInfo
 {
-	public var keyCode: Float;
+	public var keyCode:Float;
 	public var modifier:Int;
 	public var type:KeyEventType;
 	public var windowID:Int;
 
-	public function new(type:KeyEventType = null, windowID:Int = 0, keyCode: Float = 0, modifier:Int = 0)
+	public function new(type:KeyEventType = null, windowID:Int = 0, keyCode:Float = 0, modifier:Int = 0)
 	{
 		this.type = type;
 		this.windowID = windowID;
@@ -988,4 +1026,47 @@ class NativeApplication
 	var WINDOW_RESTORE = 12;
 	var WINDOW_SHOW = 13;
 	var WINDOW_HIDE = 14;
+}
+
+@:keep /*private*/ class OrientationEventInfo
+{
+	public var orientation:Int;
+	public var display:Int;
+	public var type:OrientationEventType;
+
+	public function new(type:OrientationEventType = null, orientation:Int = 0, display:Int = -1)
+	{
+		this.type = type;
+		this.orientation = orientation;
+		this.display = display;
+	}
+
+	public function clone():OrientationEventInfo
+	{
+		return new OrientationEventInfo(type, orientation, display);
+	}
+}
+
+#if (haxe_ver >= 4.0) private enum #else @:enum private #end abstract OrientationEventType(Int)
+{
+	var DISPLAY_ORIENTATION_CHANGE = 0;
+	var DEVICE_ORIENTATION_CHANGE = 1;
+}
+
+private class OrientationChangeListener #if (android && !macro) implements JNISafety #end
+{
+	private var callback:Int->Void;
+
+	public function new(callback:Int->Void)
+	{
+		this.callback = callback;
+	}
+
+	#if (android && !macro)
+	@:runOnMainThread
+	#end
+	public function onOrientationChanged(orientation:Int):Void
+	{
+		callback(orientation);
+	}
 }
