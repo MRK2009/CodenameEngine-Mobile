@@ -70,6 +70,6 @@ jobs:
           key: cache-build-ios
           path: |
             .haxelib/
-            export/release/ios/CodenameEngine/haxe
+            export/release/ios/CodenameEngine/haxe/
           restore-keys: |
             cache-build-ios
