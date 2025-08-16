@@ -94,6 +94,6 @@ If you don't have a github account please go onto https://codename-engine.com/ a
   <summary><h2>Mobile Credits</h2></summary>
 
 - Credits to [Homura](https://youtube.com/@HomuHomu833) to porting the engine
-- Credits to [Karim Akra](https://youtube.com/@Karim0690) to helping on the port
+- Credits to [Karim Akra](https://youtube.com/@karim-akra) to helping on the port
 - Credits to [SantiYea](https://youtube.com/@santiyea) to helping on the port
 </details>
