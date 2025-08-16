@@ -38,7 +38,7 @@ class AudioManager
 				{
 					var alc = context.openal;
 
-					#if lime_openal
+					#if (desktop || mobile)
 					ALSoftConfig.init();
 					#end
 					var device = alc.openDevice();
