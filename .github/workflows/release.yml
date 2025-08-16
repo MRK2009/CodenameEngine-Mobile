@@ -38,5 +38,5 @@ jobs:
           tag_name: "v1.0.1"
           prerelease: false
           files: |
-            ${{ github.workspace }}/runner/*.apk
-            ${{ github.workspace }}/runner/*.ipa
+            ${{ github.workspace }}/*.apk
+            ${{ github.workspace }}/*.ipa
