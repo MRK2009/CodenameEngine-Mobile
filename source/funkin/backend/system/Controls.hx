@@ -11,6 +11,10 @@ import flixel.input.keyboard.FlxKey;
 import mobile.funkin.backend.system.input.MobileInputID;
 #end
 
+#if !TOUCH_CONTROLS
+typedef MobileInputID = Dynamic;
+#end
+
 enum abstract Action(String) to String from String {
 	var UP = "up";
 	var LEFT = "left";
@@ -182,105 +186,105 @@ class Controls extends FlxActionSet
 	public var keyboardScheme = KeyboardScheme.None;
 
 	public var UP(get, set):Bool;
-	inline function get_UP() return _up.check() || mobileControlsPressed(MobileInputID.UP);
+	inline function get_UP() return _up.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.UP) #end;
 	inline function set_UP(val) return @:privateAccess _up._checked = val;
 	public var LEFT(get, set):Bool;
-	inline function get_LEFT()return _left.check() || mobileControlsPressed(MobileInputID.LEFT);
+	inline function get_LEFT()return _left.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.LEFT) #end;
 	inline function set_LEFT(val) return @:privateAccess _left._checked = val;
 	public var RIGHT(get, set):Bool;
-	inline function get_RIGHT() return _right.check() || mobileControlsPressed(MobileInputID.RIGHT);
+	inline function get_RIGHT() return _right.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.RIGHT) #end;
 	inline function set_RIGHT(val) return @:privateAccess _right._checked = val;
 	public var DOWN(get, set):Bool;
-	inline function get_DOWN() return _down.check() || mobileControlsPressed(MobileInputID.DOWN);
+	inline function get_DOWN() return _down.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.DOWN) #end;
 	inline function set_DOWN(val) return @:privateAccess _down._checked = val;
 	public var UP_P(get, set):Bool;
-	inline function get_UP_P() return _upP.check() || mobileControlsJustPressed(MobileInputID.UP);
+	inline function get_UP_P() return _upP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.UP) #end;
 	inline function set_UP_P(val) return @:privateAccess _upP._checked = val;
 	public var LEFT_P(get, set):Bool;
-	inline function get_LEFT_P() return _leftP.check() || mobileControlsJustPressed(MobileInputID.LEFT);
+	inline function get_LEFT_P() return _leftP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.LEFT) #end;
 	inline function set_LEFT_P(val) return @:privateAccess _leftP._checked = val;
 	public var RIGHT_P(get, set):Bool;
-	inline function get_RIGHT_P() return _rightP.check() || mobileControlsJustPressed(MobileInputID.RIGHT);
+	inline function get_RIGHT_P() return _rightP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.RIGHT) #end;
 	inline function set_RIGHT_P(val) return @:privateAccess _rightP._checked = val;
 	public var DOWN_P(get, set):Bool;
-	inline function get_DOWN_P() return _downP.check() || mobileControlsJustPressed(MobileInputID.DOWN);
+	inline function get_DOWN_P() return _downP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.DOWN) #end;
 	inline function set_DOWN_P(val) return @:privateAccess _downP._checked = val;
 	public var UP_R(get, set):Bool;
-	inline function get_UP_R() return _upR.check() || mobileControlsJustReleased(MobileInputID.UP);
+	inline function get_UP_R() return _upR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.UP) #end;
 	inline function set_UP_R(val) return @:privateAccess _upR._checked = val;
 	public var LEFT_R(get, set):Bool;
-	inline function get_LEFT_R() return _leftR.check() || mobileControlsJustReleased(MobileInputID.LEFT);
+	inline function get_LEFT_R() return _leftR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.LEFT) #end;
 	inline function set_LEFT_R(val) return @:privateAccess _leftR._checked = val;
 	public var RIGHT_R(get, set):Bool;
-	inline function get_RIGHT_R() return _rightR.check() || mobileControlsJustReleased(MobileInputID.RIGHT);
+	inline function get_RIGHT_R() return _rightR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.RIGHT) #end;
 	inline function set_RIGHT_R(val) return @:privateAccess _rightR._checked = val;
 	public var DOWN_R(get, set):Bool;
-	inline function get_DOWN_R() return _downR.check() || mobileControlsJustReleased(MobileInputID.DOWN);
+	inline function get_DOWN_R() return _downR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.DOWN) #end;
 	inline function set_DOWN_R(val) return @:privateAccess _downR._checked = val;
 
 	public var NOTE_UP(get, set):Bool;
-	inline function get_NOTE_UP() return _noteUp.check() || mobileControlsPressed(MobileInputID.HITBOX_UP);
+	inline function get_NOTE_UP() return _noteUp.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.HITBOX_UP) #end;
 	inline function set_NOTE_UP(val) return @:privateAccess _noteUp._checked = val;
 	public var NOTE_LEFT(get, set):Bool;
-	inline function get_NOTE_LEFT() return _noteLeft.check() || mobileControlsPressed(MobileInputID.HITBOX_LEFT);
+	inline function get_NOTE_LEFT() return _noteLeft.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.HITBOX_LEFT) #end;
 	inline function set_NOTE_LEFT(val) return @:privateAccess _noteLeft._checked = val;
 	public var NOTE_RIGHT(get, set):Bool;
-	inline function get_NOTE_RIGHT() return _noteRight.check() || mobileControlsPressed(MobileInputID.HITBOX_RIGHT);
+	inline function get_NOTE_RIGHT() return _noteRight.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.HITBOX_RIGHT) #end;
 	inline function set_NOTE_RIGHT(val) return @:privateAccess _noteRight._checked = val;
 	public var NOTE_DOWN(get, set):Bool;
-	inline function get_NOTE_DOWN() return _noteDown.check() || mobileControlsPressed(MobileInputID.HITBOX_DOWN);
+	inline function get_NOTE_DOWN() return _noteDown.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.HITBOX_DOWN) #end;
 	inline function set_NOTE_DOWN(val) return @:privateAccess _noteDown._checked = val;
 	public var NOTE_UP_P(get, set):Bool;
-	inline function get_NOTE_UP_P() return _noteUpP.check() || mobileControlsJustPressed(MobileInputID.HITBOX_UP);
+	inline function get_NOTE_UP_P() return _noteUpP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.HITBOX_UP) #end;
 	inline function set_NOTE_UP_P(val) return @:privateAccess _noteUpP._checked = val;
 	public var NOTE_LEFT_P(get, set):Bool;
-	inline function get_NOTE_LEFT_P() return _noteLeftP.check() || mobileControlsJustPressed(MobileInputID.HITBOX_LEFT);
+	inline function get_NOTE_LEFT_P() return _noteLeftP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.HITBOX_LEFT) #end;
 	inline function set_NOTE_LEFT_P(val) return @:privateAccess _noteLeftP._checked = val;
 	public var NOTE_RIGHT_P(get, set):Bool;
-	inline function get_NOTE_RIGHT_P() return _noteRightP.check() || mobileControlsJustPressed(MobileInputID.HITBOX_RIGHT);
+	inline function get_NOTE_RIGHT_P() return _noteRightP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.HITBOX_RIGHT) #end;
 	inline function set_NOTE_RIGHT_P(val) return @:privateAccess _noteRightP._checked = val;
 	public var NOTE_DOWN_P(get, set):Bool;
-	inline function get_NOTE_DOWN_P() return _noteDownP.check() || mobileControlsJustPressed(MobileInputID.HITBOX_DOWN);
+	inline function get_NOTE_DOWN_P() return _noteDownP.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.HITBOX_DOWN) #end;
 	inline function set_NOTE_DOWN_P(val) return @:privateAccess _noteDownP._checked = val;
 	public var NOTE_UP_R(get, set):Bool;
-	inline function get_NOTE_UP_R() return _noteUpR.check() || mobileControlsJustReleased(MobileInputID.HITBOX_UP);
+	inline function get_NOTE_UP_R() return _noteUpR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.HITBOX_UP) #end;
 	inline function set_NOTE_UP_R(val) return @:privateAccess _noteUpR._checked = val;
 	public var NOTE_LEFT_R(get, set):Bool;
-	inline function get_NOTE_LEFT_R() return _noteLeftR.check() || mobileControlsJustReleased(MobileInputID.HITBOX_LEFT);
+	inline function get_NOTE_LEFT_R() return _noteLeftR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.HITBOX_LEFT) #end;
 	inline function set_NOTE_LEFT_R(val) return @:privateAccess _noteLeftR._checked = val;
 	public var NOTE_RIGHT_R(get, set):Bool;
-	inline function get_NOTE_RIGHT_R() return _noteRightR.check() || mobileControlsJustReleased(MobileInputID.HITBOX_RIGHT);
+	inline function get_NOTE_RIGHT_R() return _noteRightR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.HITBOX_RIGHT) #end;
 	inline function set_NOTE_RIGHT_R(val) return @:privateAccess _noteRightR._checked = val;
 	public var NOTE_DOWN_R(get, set):Bool;
-	inline function get_NOTE_DOWN_R() return _noteDownR.check() || mobileControlsJustReleased(MobileInputID.HITBOX_DOWN);
+	inline function get_NOTE_DOWN_R() return _noteDownR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.HITBOX_DOWN) #end;
 	inline function set_NOTE_DOWN_R(val) return @:privateAccess _noteDownR._checked = val;
 
 	public var ACCEPT(get, set):Bool;
-	inline function get_ACCEPT() return _accept.check() || mobileControlsJustPressed(MobileInputID.A);
+	inline function get_ACCEPT() return _accept.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.A) #end;
 	inline function set_ACCEPT(val) return @:privateAccess _accept._checked = val;
 	public var ACCEPT_HOLD(get, set):Bool;
-	inline function get_ACCEPT_HOLD() return _acceptHold.check() || mobileControlsPressed(MobileInputID.A);
+	inline function get_ACCEPT_HOLD() return _acceptHold.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.A) #end;
 	inline function set_ACCEPT_HOLD(val:Bool) return @:privateAccess _acceptHold._checked = val;
 	public var ACCEPT_R(get, set):Bool;
-	inline function get_ACCEPT_R() return _acceptR.check() || mobileControlsJustReleased(MobileInputID.A);
+	inline function get_ACCEPT_R() return _acceptR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.A) #end;
 	inline function set_ACCEPT_R(val:Bool) return @:privateAccess _acceptR._checked = val;
 	public var BACK(get, set):Bool;
-	inline function get_BACK() return _back.check() || mobileControlsJustPressed(MobileInputID.B);
+	inline function get_BACK() return _back.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.B) #end;
 	inline function set_BACK(val) return @:privateAccess _back._checked = val;
 	public var BACK_HOLD(get, set):Bool;
-	inline function get_BACK_HOLD() return _backHold.check() || mobileControlsPressed(MobileInputID.B);
+	inline function get_BACK_HOLD() return _backHold.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.B) #end;
 	inline function set_BACK_HOLD(val:Bool) return @:privateAccess _backHold._checked = val;
 	public var BACK_R(get, set):Bool;
-	inline function get_BACK_R() return _backR.check() || mobileControlsJustReleased(MobileInputID.B);
+	inline function get_BACK_R() return _backR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.B) #end;
 	inline function set_BACK_R(val:Bool) return @:privateAccess _backR._checked = val;
 	public var PAUSE(get, set):Bool;
-	inline function get_PAUSE() return _pause.check() || mobileControlsJustPressed(MobileInputID.P);
+	inline function get_PAUSE() return _pause.check() #if TOUCH_CONTROLS || mobileControlsJustPressed(MobileInputID.P) #end;
 	inline function set_PAUSE(val) return @:privateAccess _pause._checked = val;
 	public var PAUSE_HOLD(get, set):Bool;
-	inline function get_PAUSE_HOLD() return _pauseHold.check() || mobileControlsPressed(MobileInputID.P);
+	inline function get_PAUSE_HOLD() return _pauseHold.check() #if TOUCH_CONTROLS || mobileControlsPressed(MobileInputID.P) #end;
 	inline function set_PAUSE_HOLD(val:Bool) return @:privateAccess _pauseHold._checked = val;
 	public var PAUSE_R(get, set):Bool;
-	inline function get_PAUSE_R() return _pauseR.check() || mobileControlsJustReleased(MobileInputID.P);
+	inline function get_PAUSE_R() return _pauseR.check() #if TOUCH_CONTROLS || mobileControlsJustReleased(MobileInputID.P) #end;
 	inline function set_PAUSE_R(val:Bool) return @:privateAccess _pauseR._checked = val;
 	public var RESET(get, set):Bool;
 	inline function get_RESET() return _reset.check();
@@ -1017,6 +1021,7 @@ class Controls extends FlxActionSet
 
 	public function getMobileIDFromControl(control:Control):MobileInputID
 	{
+		#if TOUCH_CONTROLS
 		return switch (control)
 		{
 			case UP: MobileInputID.UP;
@@ -1032,6 +1037,9 @@ class Controls extends FlxActionSet
 			case PAUSE: MobileInputID.P;
 			default: MobileInputID.NONE;
 		}
+		#else
+		return null; // jumpscare
+		#end
 	}
 
 	public inline function getJustPressed(name:String) {
