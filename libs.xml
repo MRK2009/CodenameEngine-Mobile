@@ -8,7 +8,7 @@
 		<git name="lime" url="https://github.com/th2l-devs/lime" ref="int-delta" />
 
 		<!-- Flixel -->
-		<git name="flixel" url="https://github.com/CodenameCrew/cne-flixel" />
+		<git name="flixel" url="https://github.com/HomuHomu833/cne-flixel" />
 		<git name="flixel-addons" url="https://github.com/CodenameCrew/cne-flixel-addons" />
 
 		<!-- Other Libraries -->
