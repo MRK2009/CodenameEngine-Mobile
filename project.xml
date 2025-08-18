@@ -240,4 +240,8 @@
 	<certificate path="key.keystore" password="codenameengine" alias="cneport" alias-password="codenameengine" if="android" unless="debug" />
 
 	<haxedef name="SHARE_MOBILE_FILES" if="ios" />
+
+	<!-- Category Type for Apple Systems -->
+	<config:ios category_type="public.app-category.music-games" />
+	<config:mac category_type="public.app-category.music-games" />
 </project>
