@@ -148,7 +148,7 @@ class MainState extends FlxState {
 			Framerate.instance.reload();
 
 		#if sys
-		CoolUtil.safeAddAttributes('./.temp/', NativeAPI.FileAttribute.HIDDEN);
+		CoolUtil.safeAddAttributes('.temp/', NativeAPI.FileAttribute.HIDDEN);
 		#end
 
 		var startState:Class<FlxState> = Flags.DISABLE_WARNING_SCREEN ? TitleState : funkin.menus.WarningState;
