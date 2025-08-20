@@ -118,25 +118,27 @@ class TouchPad extends MobileInputManager
 	{
 		var button = new TouchButton(X, Y, IDs);
 		var buttonLabelGraphicPath:String = "";
+		#if MOD_SUPPORT
+		final moddyFolder:String = (ModsFolder.currentModFolder != null
+			&& ModsFolder.currentModFolder != "default") ? '${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile' : '';
+		#end
 
 		if (Options.oldPadTexture)
 		{
-			var frames:FlxGraphic;
-			for (folder in [
-				'${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile',
-				Paths.getPath('mobile')
-			])
-				for (file in [Graphic.toUpperCase()])
-				{
-					final path:String = '${folder}/images/virtualpad/${file}.png';
-					if (FileSystem.exists(path))
-						buttonLabelGraphicPath = path;
-				}
+			var frames:FlxGraphic = null;
+			final defaultPath:String = 'assets/mobile/images/virtualpad/${Graphic.toLowerCase()}.png';
+			#if MOD_SUPPORT
+			final moddyPath:String = '$moddyFolder/images/virtualpad/${Graphic.toLowerCase()}.png';
+			if (FileSystem.exists(moddyPath))
+				buttonLabelGraphicPath = moddyPath;
+			else
+			#end
+				buttonLabelGraphicPath = defaultPath;
 
 			if (FileSystem.exists(buttonLabelGraphicPath))
 				frames = FlxGraphic.fromBitmapData(BitmapData.fromBytes(File.getBytes(buttonLabelGraphicPath)));
 			else
-				frames = FlxGraphic.fromBitmapData(Assets.getBitmapData('assets/mobile/images/virtualpad/default.png'));
+				frames = FlxGraphic.fromBitmapData(Assets.getBitmapData(buttonLabelGraphicPath));
 
 			button.antialiasing = Options.antialiasing;
 			button.frames = FlxTileFrames.fromGraphic(frames, FlxPoint.get(Std.int(frames.width / 2), frames.height));
@@ -147,19 +149,31 @@ class TouchPad extends MobileInputManager
 		else
 		{
 			var buttonGraphicPath:String = "";
-			for (folder in [
-				'${ModsFolder.modsPath}${ModsFolder.currentModFolder}/mobile',
-				Paths.getPath('mobile')
-			])
-				for (file in ["bg", Graphic.toUpperCase()])
+			final defaultPath:String = 'assets/mobile';
+			#if MOD_SUPPORT
+			final moddyPath:String = '$moddyFolder/mobile';
+			#end
+			for (file in ["bg", Graphic.toUpperCase()])
+			{
+				var path:String = '';
+				#if MOD_SUPPORT
+				path = '$moddyPath/images/touchpad/${file}.png';
+				if (FileSystem.exists(path))
+					if (file == "bg")
+						buttonGraphicPath = path;
+					else
+						buttonLabelGraphicPath = path;
+				else
+				#end
 				{
-					final path:String = '${folder}/images/touchpad/${file}.png';
-					if (FileSystem.exists(path))
+					path = '$defaultPath/images/touchpad/${file}.png';
+					if (Assets.exists(path))
 						if (file == "bg")
 							buttonGraphicPath = path;
 						else
 							buttonLabelGraphicPath = path;
 				}
+			}
 
 			button.label = new FlxSprite();
 			button.loadGraphic(buttonGraphicPath);
